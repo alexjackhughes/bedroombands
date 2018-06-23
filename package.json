@@ -12,14 +12,13 @@
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "alexjackhughes",
   "license": "ISC",
   "dependencies": {
-    "react-scripts":"1.1.4",
     "body-parser": "^1.18.3",
+    "bytes": "^3.0.0",
     "concurrently": "^3.5.1",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.15.3",
@@ -27,6 +26,7 @@
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.1.6",
     "passport-google-oauth20": "^1.0.0",
+    "react-scripts": "1.1.4",
     "stripe": "^6.1.1"
   }
 }

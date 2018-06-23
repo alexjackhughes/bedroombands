@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bytes": "^3.0.0",
     "materialize-css": "^0.100.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
