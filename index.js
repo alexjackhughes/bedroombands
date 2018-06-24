@@ -27,7 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Set the public key for billing */
-stripe.setPublishableKey(process.env.STRIPE_PUBLIC_KEY);
+// stripe.setPublishableKey(process.env.STRIPE_PUBLIC_KEY);
 
 /* Set-Up Routes */
 require('./routes/authRoutes')(app);
