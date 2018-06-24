@@ -23,6 +23,15 @@ The **Frontend React App** will be running on:
 The **Backend API** will be running on:
 [localhost:5000](http://localhost:5000/ "http://localhost:5000/")
 
+
+## Deployment
+
+_First, make sure git is set-up with Heroku, and branch is up-to-date_
+
+```
+git push heroku master
+```
+
 ## Author
 
 **Alexander Jack Hughes**

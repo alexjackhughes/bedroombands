@@ -4,6 +4,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+const stripe = require('stripe');
 
 require('./models/User'); // Has to be this way round
 require('./services/passport');
@@ -24,6 +25,9 @@ app.use(cookieSession({
 /* Set-up authentication */
 app.use(passport.initialize());
 app.use(passport.session());
+
+/* Set the public key for billing */
+stripe.setPublishableKey(process.env.STRIPE_PUBLIC_KEY);
 
 /* Set-Up Routes */
 require('./routes/authRoutes')(app);
