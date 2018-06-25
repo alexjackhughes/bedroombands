@@ -13,7 +13,7 @@ class Header extends Component {
     switch(this.props.auth) {
       case null:
         return;
-        
+
       case false:
         return <li className="right"><a href="/auth/google">Login with Google</a></li>
 
@@ -31,7 +31,8 @@ class Header extends Component {
     return(
       <nav>
         <div className="nav-wrapper">
-          <Link to={this.props.auth ? '/surveys' :'/'} className="left brand-logo">Emaily</Link>
+          {/* link to logo https://s3.eu-west-2.amazonaws.com/bedroom-bands/bedroom-bands.png */}
+          <Link to={this.props.auth ? '/surveys' :'/'} className="left brand-logo">BedroomBands</Link>
           <ul>
             {this.renderContent()}
           </ul>
