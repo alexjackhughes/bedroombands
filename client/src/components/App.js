@@ -5,10 +5,9 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './Landing';
-const Dashboard = () => <h2>Dashboard</h2>
-const SurveyNew = () => <h2>Survey New</h2>
-const Footer = () => <h2>Footer</h2>
-
+import Dashboard from './Dashboard';
+import SurveyNew from './surveys/SurveyNew';
+import Footer from './Footer';
 
 class App extends Component {
 
@@ -18,17 +17,17 @@ class App extends Component {
 
   render() {
     return(
-      <div className="container">
         <BrowserRouter>
           <div>
             <Header />
-            <Route exact path='/' component={Landing} />
-            <Route path='/surveys' component={Dashboard} />
-            <Route path='/surveys/new' component={SurveyNew} />
+            <div className="container" style={{paddingTop: '50px', paddingBottom: '50px'}}>
+              <Route exact path='/' component={Landing} />
+              <Route exact path='/surveys' component={Dashboard} />
+              <Route path='/surveys/new' component={SurveyNew} />
+            </div>
             <Footer />
           </div>
         </BrowserRouter>
-      </div>
     );
   }
 };

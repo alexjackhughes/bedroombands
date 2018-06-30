@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const stripe = require('stripe');
 
-require('./models/User'); // Has to be this way round
+require('./models/User'); // Has to be first
+require('./models/Survey');
 require('./services/passport');
 
 /* Connect to database, create app */
@@ -32,6 +33,7 @@ app.use(passport.session());
 /* Set-Up Routes */
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 if(process.env.NODE_ENV === 'production') {
   // Express will serve up server stuff

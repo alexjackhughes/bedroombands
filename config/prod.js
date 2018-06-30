@@ -6,5 +6,7 @@ module.exports = {
   cookieKey: process.env.COOKIE_KEY,
   googleCallbackURI: 'https://lit-caverns-14892.herokuapp.com/auth/google/callback',
   stripePublishableKey: process.env.STRIPE_PUBLIC_KEY,
-  stripeSecretKey: process.env.STRIPE_SECRET_KEY
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+  sendGridKey: process.env.SEND_GRID_KEY,
+  redirectDomain: 'https://lit-caverns-14892.herokuapp.com'
 }
