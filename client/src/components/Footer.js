@@ -13,24 +13,24 @@ export default () => {
       <div className="container">
         <div className="row">
           <div className="col l6 s12">
-            <h5 className="white-text">Footer Content</h5>
-            <p className="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            <h5 className="white-text">BedroomBands</h5>
+            <p className="grey-text text-lighten-4">This is a community, so if you have any feedback - let us know!</p>
           </div>
           <div className="col l4 offset-l2 s12">
             <h5 className="white-text">Links</h5>
             <ul>
-              <li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a className="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a className="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a className="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              <li><a className="grey-text text-lighten-3" href="#!">View Tracks</a></li>
+              <li><a className="grey-text text-lighten-3" href="#!">Upload a Track</a></li>
+              <li><a className="grey-text text-lighten-3" href="#!">My Favourites</a></li>
+              <li><a className="grey-text text-lighten-3" href="#!">My Tracks</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div className="footer-copyright">
         <div className="container">
-        © 2018 BedroomBands
-        <a className="grey-text text-lighten-4 right" href="#!">More Links</a>
+        <span>© 2018 BedroomBands</span>
+        <a className="grey-text text-lighten-4 right" href="/">Go Make Music</a>
         </div>
       </div>
     </footer>
