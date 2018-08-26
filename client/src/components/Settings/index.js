@@ -125,7 +125,7 @@ class Settings extends Component {
           <div className="row">
             <div className="col s6 offset-s3">
               <div className="row centre">
-                <img className="profile-image" src={gravatarUrl} />
+                <img className="profile-image" src={'http:' + gravatarUrl} />
                 <h2 className="profile-title">{artist.username}</h2>
               </div>
 
