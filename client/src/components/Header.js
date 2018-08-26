@@ -12,15 +12,16 @@ class Header extends Component {
       case false:
         return (
           <li className="right">
-            <a href="/auth/google" className="btn light-blue lighten-1">
-              Login with Google
+            <a href="/auth/google" className="blue lighten-2 waves-effect waves-light btn-large nav-button-margin">
+              Login
             </a>
+
           </li>
         );
 
       default:
         return [
-          <li key="3" className="right black-text">
+          <li key="3" className="right">
             <a href="/api/logout" className="black-text">
               Logout
             </a>
@@ -28,6 +29,11 @@ class Header extends Component {
           <li key="4">
             <Link to="/settings" className="right black-text">
               My Profile
+            </Link>
+          </li>,
+          <li key="5">
+            <Link to="/tracks" className="right black-text">
+              Tracks
             </Link>
           </li>,
           <li key="7" className="right black-text">
@@ -46,7 +52,7 @@ class Header extends Component {
   render() {
     return (
       <nav style={{ height: "80px" }}>
-        <div className="nav-wrapper grey lighten-5 z-depth-0 black-text text-darken">
+        <div className="nav-wrapper grey lighten-5 z-depth-0">
           <Link
             to={this.props.auth ? "/tracks" : "/"}
             className="left brand-logo"
