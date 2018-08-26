@@ -130,7 +130,7 @@ class Settings extends Component {
               </div>
 
               <div className="row centre">
-                <a href={this.props.location.pathname + '/tracks'}
+                <a href={'/artist/' + this.props.auth._id + '/tracks'}
                    className="blue lighten-2 waves-effect waves-light btn-large">
                   <i className="fas fa-play btn-far"></i> TRACKS
                 </a>
@@ -138,7 +138,7 @@ class Settings extends Component {
                    className="blue lighten-2 waves-effect waves-light btn-large">
                   <i className="fas fa-share btn-far"></i> SHARE
                 </a>
-                <a href={this.props.location.pathname + '/likes'}
+                <a href={'/artist/' + this.props.auth._id + '/likes'}
                    className="blue lighten-2 waves-effect waves-light btn-large">
                   <i className="fas fa-heart btn-far"></i> LIKES
                 </a>

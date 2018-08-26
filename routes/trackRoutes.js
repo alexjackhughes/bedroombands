@@ -17,6 +17,15 @@ module.exports = app => {
       });
   });
 
+  // GET: Tracks from array
+  app.post("/api/tracks/array", async (req, res) => {
+
+    let listOfIds = req.body.array;
+    const tracks = await Track.find({_id:listOfIds});
+
+    res.send(tracks);
+  });
+
   // GET: One Track by Id
   app.get("/api/track/:trackId", (req, res) => {
     Track.findById(req.params.trackId)
