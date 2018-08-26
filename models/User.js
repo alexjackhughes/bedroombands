@@ -7,7 +7,15 @@ const userSchema = new Schema({
   credits: {
     type: Number,
     default: 0
-  }
+  },
+  username: {type: String, default: ""},
+  blurb: {type: String, default: ""},
+  email: {type: String, default: ""},
+  username: {type: String, default: ""},
+  likedTracks: [String],
+  myTracks: [String],
+  genres: [String],
+  instruments: [String]
 });
 
 /* Assign Schema to Collection */

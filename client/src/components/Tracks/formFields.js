@@ -7,12 +7,7 @@ export default [
   {
     label: "SoundCloud Link",
     name: "soundCloudUrl",
-    noValueError: "You need to add a valid link to a track on SoundCloud!"
-  },
-  {
-    label: "Description",
-    name: "description",
-    noValueError: "You need to add a description about this song"
+    noValueError: "You need to add a valid link to a track on SoundCloud"
   },
   {
     label: "Artists",
