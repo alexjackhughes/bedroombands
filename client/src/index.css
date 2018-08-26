@@ -11,12 +11,16 @@ main {
 
 nav {
   box-shadow: none;
-  /* box-shadow: 0 4px 2px -2px gray; */
   box-shadow: 0 0 1rem rgba(0,0,0,.2);
 }
 
 #nav-mobile {
   margin-top: 8px !important;
+}
+
+nav ul a:hover {
+  background-color: transparent !important;
+  font-weight: bold !important;
 }
 
 .black-text {
