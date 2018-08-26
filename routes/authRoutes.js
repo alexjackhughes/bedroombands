@@ -43,10 +43,9 @@ module.exports = app => {
     const userById = await User.findByIdAndUpdate(
       req.user._id,
       {
-        username: req.body.username,
-        blurb: req.body.blurb,
-        email: req.body.email,
-        username: req.body.username,
+        username: req.body.username || 'default',
+        blurb: req.body.blurb || 'A little bit about who I am',
+        email: req.body.email || 'example@example.com',
         likedTracks: req.body.likedTracks,
         myTracks: req.body.myTracks,
         genres: req.body.genres,
@@ -79,7 +78,7 @@ module.exports = app => {
     "/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.redirect("/");
+      res.redirect("/settings");
     }
   );
 

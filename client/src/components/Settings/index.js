@@ -24,6 +24,10 @@ class Settings extends Component {
 
   componentDidMount() {
     console.log('props', this.props);
+
+    this.setState({
+      settingsSubmit:false
+    });
   }
 
   /* Event Handlers */
@@ -91,6 +95,8 @@ class Settings extends Component {
       console.log("user api was updated");
     });
 
+    this.setState({settingsSubmit: true});
+
     //actions.submitUser(this.state, this.props.history);
   }
 
@@ -125,6 +131,17 @@ class Settings extends Component {
           <div className="row">
             <div className="col s6 offset-s3">
               <div className="row centre">
+
+                {
+                  artist.username === "" ?
+                  <div class="row">
+                    <div class="alert success">
+                      <p>Thanks for joining! Make sure to set your username and email address.</p>
+                    </div>
+                  </div>
+                  : <span />
+                }
+
                 <img className="profile-image" src={'http:' + gravatarUrl} />
                 <h2 className="profile-title">{artist.username}</h2>
               </div>
@@ -224,6 +241,16 @@ class Settings extends Component {
                   Submit
                 </button>
               </form>
+
+              {
+                this.state.settingsSubmit ?
+                <div class="row">
+                  <div class="alert success">
+                    <p>Your settings have been updated!</p>
+                  </div>
+                </div>
+                : <span />
+              }
             </div>
           </div>
         );

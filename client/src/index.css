@@ -590,3 +590,31 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 30px !important;
   width: 90% !important;
 }
+
+
+.alert {
+  text-align: left;
+  font-size: 15px;
+  padding: 10px;
+  padding-left: 25px;
+  color: rgba(255,255,255, 0.9);
+  box-shadow: 0 0 1rem rgba(0,0,0,.2);
+
+  border-radius: 5px;
+}
+
+.alert:hover {
+  box-shadow: 0 0 1rem rgba(0,0,0,.3);
+}
+
+.failure {
+  background-color: #EB3A4B;
+}
+
+.warning {
+  background-color: #FCEA60;
+}
+
+.success {
+  background-color: #00E676;
+}
