@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import _ from "lodash";
 import axios from "axios";
+import gravatar from 'gravatar';
 
 import * as actions from "../../actions";
 import RFReactSelect from "./RFReactSelect";
@@ -119,11 +120,12 @@ class Settings extends Component {
       default:
         console.log('auth', this.props.auth);
         let artist = this.props.auth;
+        let gravatarUrl = gravatar.url(artist.email, {s: '400', r: 'pg', d: '404'});
         return (
           <div className="row">
             <div className="col s6 offset-s3">
               <div className="row centre">
-                <img className="profile-image" src={`https://www.gravatar.com/avatar/${artist.email}`} />
+                <img className="profile-image" src={gravatarUrl} />
                 <h2 className="profile-title">{artist.username}</h2>
               </div>
 

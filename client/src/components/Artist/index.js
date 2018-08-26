@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import gravatar from 'gravatar';
 
 import NotFound from '../NotFound';
 
@@ -43,12 +44,13 @@ class Artist extends Component {
 
       default:
         let artist = this.state.user;
+        let gravatarUrl = gravatar.url(artist.email, {s: '400', r: 'pg', d: '404'});
         return (
             <div className="row" style={{'textAlign': 'center'}}>
               <div className="col s6 offset-s3">
 
                 <div className="row">
-                  <img className="profile-image" src={`https://www.gravatar.com/avatar/${artist.email}`} />
+                  <img className="profile-image" src={gravatarUrl} />
                   <h2 className="profile-title">{artist.username}</h2>
                 </div>
 
