@@ -158,7 +158,20 @@ module.exports = app => {
 
   // UPDATE: Add one to my liked tracks
   app.put("/api/liked-tracks/:trackId", requireLogin, async (req, res) => {
-    req.user.likedTracks.push(req.params.trackId);
+
+    // if track is already in list, remove it
+    if(req.user.likedTracks.includes(req.params.trackId)) {
+
+      let index = req.user.likedTracks.indexOf(req.params.trackId);
+      if (index > -1) {
+        req.user.likedTracks.splice(index, 1);
+      }
+
+    // Otherwise, add it to list
+    } else {
+      req.user.likedTracks.push(req.params.trackId);
+    }
+
     const user = await req.user.save();
 
     res.send(user);

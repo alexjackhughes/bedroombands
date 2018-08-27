@@ -22,13 +22,32 @@ class Track extends Component {
     });
   }
 
-  // Rating track - need track id & user id to make call
+  // Rating track - need to make api call
   rateTrack(e, index) {
+    let userId = this.props.auth._id,
+        trackId = this.props.track._id;
+
     console.log('rating', index);
   }
 
   // Needs to call the like track api for this user
   likeTrack() {
+    let id = this.props.track._id;
+
+    axios.put('/api/liked-tracks/' + id)
+      // handle success
+      .then((response) => {
+        console.log(response);
+      })
+      // handle error
+      .catch((error) => {
+        console.log('Error', error);
+      })
+      // always executed
+      .then(() => {
+
+      });
+
     console.log('track liked');
   }
 
@@ -69,8 +88,6 @@ class Track extends Component {
     );
   }
 
-  // render fas or far depending on whether song id is in liked tracks
-  // need to find the song id and check users my track
   renderLikeButton() {
 
     let id = this.props.track._id;
