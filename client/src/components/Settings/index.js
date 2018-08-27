@@ -116,7 +116,7 @@ class Settings extends Component {
       { value: "Bandola", label: "Bandola" }
     ];
 
-    switch (this.props && this.props.auth) {
+    switch (this.props && this.props.auth && this.state && this.state.settingsSubmit !== undefined) {
       case null:
         return <div>Loading...</div>;
 
