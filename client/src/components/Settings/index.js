@@ -30,6 +30,24 @@ class Settings extends Component {
     });
   }
 
+
+  /*
+    Takes the current URL and adds it
+    to the user's clipboard and sets an alert
+   */
+  copyShareLink() {
+    let copyText = document.createElement('textarea');
+    copyText.value = 'https://lit-caverns-14892.herokuapp.com/' + this.props.auth.id;
+    copyText.setAttribute('readonly', '');
+    copyText.style = {position: 'absolute', left: '-9999px'};
+
+    document.body.appendChild(copyText);
+    copyText.select();
+
+    document.execCommand("Copy");
+    alert("Copied the link!");
+  }
+
   /* Event Handlers */
 
   handleUsernameChange(event) {

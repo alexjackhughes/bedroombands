@@ -156,6 +156,16 @@ module.exports = app => {
     }
   });
 
+  // Rate a track has a number of conditions:
+  // 1. make sure user hasn't rated before
+  // 2. allow user to rate track
+  // 3. calculate the new current rating for track
+  app.put("/api/rate-track/:trackId/rating/:rating", requireLogin, async () => {
+
+    const user = await req.user.save();
+    res.send(user);
+  });
+
   // UPDATE: Add one to my liked tracks
   app.put("/api/liked-tracks/:trackId", requireLogin, async (req, res) => {
 
@@ -173,11 +183,10 @@ module.exports = app => {
     }
 
     const user = await req.user.save();
-
     res.send(user);
   });
 
-  // DELETE: Delete one from my liked tracks
+  // NOT NEEDED - DELETE: Delete one from my liked tracks
   app.delete("/api/liked-tracks/:trackId", requireLogin, async (req, res) => {
     let index = req.user.likedTracks.indexOf(req.params.trackId);
     if (index > -1) {

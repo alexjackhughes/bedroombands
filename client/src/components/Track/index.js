@@ -23,14 +23,26 @@ class Track extends Component {
   }
 
   // Rating track - need to make api call
-  rateTrack(e, index) {
-    let userId = this.props.auth._id,
-        trackId = this.props.track._id;
+  rateTrack(e, rating) {
+    let id = this.props.track._id;
+    console.log('rating', rating);
 
-    console.log('rating', index);
+    axios.put("/api/rate-track/"+ id +"/rating/" + rating)
+      // handle success
+      .then((response) => {
+        console.log(response);
+      })
+      // handle error
+      .catch((error) => {
+        console.log('Error', error);
+      })
+      // always executed
+      .then(() => {
+        console.log('track liked');
+      });
   }
 
-  // Needs to call the like track api for this user
+  // Allows the user to like a track
   likeTrack() {
     let id = this.props.track._id;
 
@@ -45,10 +57,8 @@ class Track extends Component {
       })
       // always executed
       .then(() => {
-
+        console.log('track liked');
       });
-
-    console.log('track liked');
   }
 
   renderArtistList(artists) {
