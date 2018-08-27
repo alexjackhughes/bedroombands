@@ -58,6 +58,7 @@ class Track extends Component {
       // always executed
       .then(() => {
         console.log('track liked');
+        window.location.reload()
       });
   }
 
