@@ -12,8 +12,8 @@ class Header extends Component {
       case false:
         return (
           <li className="right">
-            <a href="/auth/google" className="blue lighten-2 waves-effect waves-light btn-large nav-button-margin">
-              Login
+            <a href="/auth/google" className="nav-button">
+              <span>LOGIN</span>
             </a>
 
           </li>
