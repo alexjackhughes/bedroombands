@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import NotFound from '../NotFound';
@@ -21,7 +22,12 @@ class Track extends Component {
     });
   }
 
-  // needs to call the like track api for this user
+  // Rating track - need track id & user id to make call
+  rateTrack(e, index) {
+    console.log('rating', index);
+  }
+
+  // Needs to call the like track api for this user
   likeTrack() {
     console.log('track liked');
   }
@@ -63,22 +69,46 @@ class Track extends Component {
     );
   }
 
-  // Need to make rating clickable
+  // render fas or far depending on whether song id is in liked tracks
+  // need to find the song id and check users my track
+  renderLikeButton() {
+
+    let id = this.props.track._id;
+    console.log('true', this.props.auth.likedTracks.indexOf(id) > -1);
+    if(this.props.auth.likedTracks.indexOf(id) > -1) {
+      return(
+        <a href="#" onClick={() => this.likeTrack()} className="fas fa-heart like-button"></a>
+      );
+    } else {
+      return(
+        <a href="#" onClick={() => this.likeTrack()} className="far fa-heart like-button"></a>
+      );
+    }
+  }
+
   renderRating(rating) {
     let stars = [];
-    for (let i = 0; i < rating; i++) {
-      stars.push(<i className="fas fa-star btn-far"></i>);
+
+    for (let index = 0; index < rating; index++) {
+      stars.push(<i key={index} onClick={(e) => {this.rateTrack(e, index+1)}} className="fas fa-star btn-far"></i>);
+    }
+
+    for (let index = rating; index < 5; index++) {
+      stars.push(<i key={index} onClick={(e) => {this.rateTrack(e, index+1)}} className="far fa-star btn-far"></i>);
     }
 
     return stars;
   }
 
   render() {
-    switch (this.state && this.state.track && this.state.users !== undefined  && this.state.users.length !== 0) {
+
+    switch (this.state && this.state.track && this.state.users !== undefined
+            && this.state.users.length !== 0 && this.props.auth) {
       case null:
         return <span></span>;
 
       default:
+        console.log('props', this.props.auth);
         let artists = this.state.users;
         let track = this.props.track;
         let trackUrl = `https://w.soundcloud.com/player/?url=${track.soundCloudUrl}&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
@@ -100,7 +130,7 @@ class Track extends Component {
                           }</div>
                         </div>
                         <div className="col s4 like-section">
-                          <a href="#" onClick={this.likeTrack()} className="far fa-heart like-button"></a>
+                          {this.renderLikeButton()}
                         </div>
                       </div>
                     </div>
@@ -124,4 +154,8 @@ class Track extends Component {
   }
 }
 
-export default Track;
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(Track);
