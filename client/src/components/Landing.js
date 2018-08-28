@@ -23,7 +23,7 @@ class Landing extends Component {
           </p>
           <p>We hope you'll join us.</p>
         </div>
-        <a href="/auth/google" class="blue lighten-2 waves-effect waves-light btn-large">JOIN WITH <i class="fab fa-google-plus-g btn-far" /></a>
+        <a href="/auth/google" class="blue lighten-2 waves-effect waves-light btn-large">JOIN WITH <i className="fab fa-google-plus-g btn-far" /></a>
       </div>
     );
   }

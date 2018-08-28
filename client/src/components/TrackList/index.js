@@ -42,7 +42,7 @@ class TrackList extends Component {
   render() {
     switch (this.state && this.state.tracks) {
       case null:
-        return <div>Loading...</div>;
+        return <div />;
 
       default:
         return this.state.tracks.map(track => {

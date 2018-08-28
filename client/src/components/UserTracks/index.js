@@ -5,7 +5,7 @@ import _ from "lodash";
 import TrackList from "../TrackList";
 import Track from "../Track";
 
-class TracksPage extends Component {
+class UserTracks extends Component {
 
   constructor() {
     super();
@@ -49,8 +49,19 @@ class TracksPage extends Component {
             </div>
           );
     }
-    return <div />;
+    return(
+      <div>
+        <div className="row">
+          <div className="centre col s8 offset-s2">
+            <h1 className="profile-title">Tracks</h1>
+            <p>Looks like you don't have any tracks here yet :(</p>
+            <div className="row">
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
-export default TracksPage;
+export default UserTracks;

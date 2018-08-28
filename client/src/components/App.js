@@ -12,7 +12,8 @@ import Settings from "./Settings";
 import Account from "./Account/Account";
 import SurveyNew from "./surveys/SurveyNew"; // This is causing the bug where new tracks are actually surveys
 import TrackExpanded from "./TrackExpanded";
-import TracksPage from "./TracksPage";
+import UserTracks from "./UserTracks";
+import GenericTracks from "./GenericTracks";
 import NotFound from "./NotFound";
 import Footer from "./Footer";
 
@@ -39,7 +40,9 @@ class App extends Component {
               <Route exact path="/tracks" component={Dashboard} />
               <Route exact path="/settings" component={Settings} />
               <Route exact path="/artist/:userId" component={Artist} />
-              <Route exact path="/artist/:userId/:type" component={TracksPage} />
+              <Route exact path="/artist/:userId/:type" component={UserTracks} />
+              <Route exact path="/tracks/:type" component={GenericTracks} />
+              <Route exact path="/tracks/:type/:rating" component={GenericTracks} />
               <Route exact path="/track/:trackId" component={TrackExpanded} />
               <Route exact path="/tracks/new" component={SurveyNew} />
               <Route component={NotFound}/>

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import _ from "lodash";
 
 import FIELDS from "./formFields";
@@ -10,34 +10,43 @@ const SurveyFormReview = ({ onCancel, formValues, submitTrack, history }) => {
 
   const reviewFields = _.map(FIELDS, ({ name, label }) => {
     return (
-      <div class="row profile-entry">
-        <p class="profile-label">{label}</p>
-        <p class="profile-data">{formValues[name]}</p>
+      <div key={name} className="row profile-entry">
+        <p className="profile-label">{label}</p>
+        <p className="profile-data">{formValues[name]}</p>
       </div>
     );
   });
 
-  return (
-    <div class="row">
-      <div class="col s6 offset-s3">
-        <h2 class="profile-title centre">Confirm Track</h2>
-        <div class="highlight">
-          <span>{reviewFields}</span>
-          <button className="red accent-3 waves-effect waves-light btn-large" onClick={onCancel}>
-            Back <i class="fas fa-times-circle btn-far"></i>
-          </button>
-          <button
-            className="green accent-3 waves-effect waves-light btn-large right"
-            onClick={() => {
-              submitTrack(formValues, history);
-            }}
-          >
-            Are You Sure? <i class="fas fa-save btn-far"></i>
-          </button>
+  switch(formValues) {
+    case null:
+      return <div />;
+
+    case false:
+      return <Redirect to="/" />;
+
+    default:
+    return (
+      <div className="row">
+        <div className="col s6 offset-s3">
+          <h2 className="profile-title centre">Confirm Track</h2>
+          <div className="highlight">
+            <span>{reviewFields}</span>
+            <button className="red accent-3 waves-effect waves-light btn-large" onClick={onCancel}>
+              Back <i className="fas fa-times-circle btn-far"></i>
+            </button>
+            <button
+              className="green accent-3 waves-effect waves-light btn-large right"
+              onClick={() => {
+                submitTrack(formValues, history);
+              }}
+            >
+              Are You Sure? <i className="fas fa-save btn-far"></i>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 function mapStateToProps(state) {

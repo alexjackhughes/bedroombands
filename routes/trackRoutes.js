@@ -41,7 +41,7 @@ module.exports = app => {
   });
 
   // GET: Filter Tracks by Genre
-  app.get("/api/tracks/:genre", (req, res) => {
+  app.get("/api/tracks/genre/:genre", (req, res) => {
     Track.find({ genres: req.params.genre })
       .then(track => {
         if (!track) return res.status(404).send({ message: "Track not found" });
@@ -53,8 +53,21 @@ module.exports = app => {
       });
   });
 
+  // GET: Filter Tracks by type
+  app.get("/api/tracks/type/:type", (req, res) => {
+    Track.find({ type: req.params.type })
+      .then(track => {
+        if (!track) return res.status(404).send({ message: "Track not found" });
+
+        res.send(track);
+      })
+      .catch(() => {
+        return res.status(404).send({ message: "Please try again" });
+      });
+  });
+
   // GET: Filter Tracks by Instrument
-  app.get("/api/tracks/:instrument", (req, res) => {
+  app.get("/api/tracks/instrument/:instrument", (req, res) => {
     Track.find({ instruments: req.params.instrument })
       .then(track => {
         if (!track) return res.status(404).send({ message: "Track not found" });
@@ -67,8 +80,8 @@ module.exports = app => {
   });
 
   // GET: Filter Tracks by rating
-  app.get("/api/tracks/:rating", (req, res) => {
-    Track.find({ ratings: req.params.rating })
+  app.get("/api/tracks/rating/:rating", (req, res) => {
+    Track.find({ currentRating: req.params.rating })
       .then(track => {
         if (!track) return res.status(404).send({ message: "Track not found" });
 

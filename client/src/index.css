@@ -25,7 +25,7 @@ nav ul a:hover {
 
 .black-text {
   color: #2B3854 !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
 }
 
 .grey-lighten-5 {
@@ -266,10 +266,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* All Tracks CSS */
 
-.sidebar {
-  background-color: #F5F8FA;
-}
-
 .main-track-section {
   margin: 0px !important;
   padding: 0px !important;
@@ -319,24 +315,32 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 2rem rgba(0,0,0,.2);
 }
 
+.sidebar {
+  margin-top: 35px;
+  padding-bottom: 20px;
+  background-color:white !important;
+  border-radius: 12px;
+  box-shadow: 0 0 1rem rgba(0,0,0,.2);
+}
+
+.sidebar:hover {
+  box-shadow: 0 0 2rem rgba(0,0,0,.2);
+}
+
 .category-item {
   text-align: left;
   padding-top: 10px;
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 10px;
-  font-size: 20px;
+  font-size: 20px !important;
   opacity: 0.5;
   font-weight: bold;
 }
 
 .category-icon {
   padding-right: 20px;
-  font-size: 32px;
-}
-
-.category-text {
-
+  font-size: 32px !important;
 }
 
 .category-line {
@@ -374,6 +378,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .rating-icon {
   color: #F5B64E;
+    font-size: 20px !important;
 }
 
 .category-item-active {
