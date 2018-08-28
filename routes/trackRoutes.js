@@ -108,7 +108,7 @@ module.exports = app => {
       soundCloudUrl: req.body.soundCloudUrl,
       description: req.body.description,
       artists: req.body.artists, // Need to add originator
-      ratings: [5],
+      ratings: [{id: req.user._id, rating: 5}],
       currentRating: 5,
       genres: req.body.genres,
       instruments: req.body.instruments
