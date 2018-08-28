@@ -8,6 +8,13 @@ import NotFound from '../NotFound';
 
 class Track extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      trackRated: false
+    }
+  }
+
   componentDidMount() {
 
     let users = [];
@@ -38,6 +45,7 @@ class Track extends Component {
       })
       // always executed
       .then(() => {
+        this.setState({trackRated: true});
         console.log('track liked');
       });
   }
@@ -174,6 +182,15 @@ class Track extends Component {
                       </div>
                     </div>
                   </div>
+
+                  {/* Set an alert when rating */}
+                  {
+                    this.state.trackRated ?
+                    <div class="alert success add-top-space">
+                      <p>Thanks for rating this track!</p>
+                    </div>
+                    : <span />
+                  }
                 </div>
               </div>
             </div>

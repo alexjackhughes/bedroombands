@@ -33,6 +33,7 @@
     "path-parser": "^4.1.1",
     "react-scripts": "1.1.4",
     "sendgrid": "^5.2.3",
-    "stripe": "^6.1.1"
+    "stripe": "^6.1.1",
+    "underscore": "^1.9.1"
   }
 }

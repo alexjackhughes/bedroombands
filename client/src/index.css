@@ -637,3 +637,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-button:hover {
   box-shadow: 0 0 2rem rgba(0,0,0,.1);
 }
+
+.add-top-space {
+      margin-top: 15px;
+}

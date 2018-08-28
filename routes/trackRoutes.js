@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 const requireTrack = require("../middlewares/requireTrack");
+var _ = require('underscore');
 
 const Track = mongoose.model("tracks");
 const User = mongoose.model("users");
@@ -160,10 +161,48 @@ module.exports = app => {
   // 1. make sure user hasn't rated before
   // 2. allow user to rate track
   // 3. calculate the new current rating for track
-  app.put("/api/rate-track/:trackId/rating/:rating", requireLogin, async () => {
+  //
+  // NOT WORKING
+  app.put("/api/rate-track/:trackId/rating/:rating", requireLogin, async (req,res) => {
 
-    const user = await req.user.save();
-    res.send(user);
+    Track.findById(req.params.trackId)
+      .then(track => {
+        if (!track) return res.status(404).send({ message: "Track not found" });
+
+        let currentUserRating = -1;
+        let ratingIndex;
+
+        // Check each rating to see if it matches user
+        track.ratings.map((rating, index) => {
+          if (rating.id == req.user._id) {
+            currentUserRating = rating;
+            ratingIndex = index;
+          }
+        });
+
+        // User has never rated before:
+        if(currentUserRating == -1) {
+          track.ratings.push({id: req.user._id, rating: req.params.rating});
+
+        // User has rated, so replace old rating
+        } else {
+          track.ratings[ratingIndex] = {id: req.user._id, rating: req.params.rating};
+        }
+
+        // Finally re-calculate the current rating
+        let sum = 0;
+        track.ratings.map((rating) => {
+          sum += parseInt(rating.rating, 10);
+        });
+
+        track.currentRating = Math.round( sum / track.ratings.length );
+        res.send(track);
+      })
+      .catch(() => {
+        return res.status(404).send({ message: "Please try again" });
+      });
+
+      res.send(track);
   });
 
   // UPDATE: Add one to my liked tracks

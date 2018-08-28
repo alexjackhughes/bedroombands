@@ -144,7 +144,7 @@ class Settings extends Component {
       default:
         console.log('auth', this.props.auth);
         let artist = this.props.auth;
-        let gravatarUrl = gravatar.url(artist.email, {s: '400', r: 'pg', d: '404'});
+        let gravatarUrl = gravatar.url(artist.email, {s: '400', r: 'pg', d: '404'}, true); // Might need to remove options
         return (
           <div className="row">
             <div className="col s6 offset-s3">

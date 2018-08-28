@@ -8,7 +8,10 @@ const trackSchema = new Schema({
   soundCloudUrl: String,
   blurb: String,
   artists: [String],
-  ratings: [Number],
+  ratings: [{
+              "id":String,
+              "rating":Number
+            }],
   currentRating: Number,
   genres: [String],
   instruments: [String]
