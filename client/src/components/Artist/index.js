@@ -44,6 +44,7 @@ class Artist extends Component {
 
       default:
         let artist = this.state.user;
+        let trackUrl = `https://w.soundcloud.com/player/?url=${artist.exampleTrack}&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
         let gravatarUrl = gravatar.url(artist.email, {s: '400', r: 'pg', d: '404'});
         return (
             <div className="row" style={{'textAlign': 'center'}}>
@@ -96,6 +97,13 @@ class Artist extends Component {
                   </div>
                 </div>
 
+                <div className="row" style={{'marginTop':30}}>
+                  <h2 className="profile-title">Portfolio</h2>
+                  <p>This is an example of some of <strong>{artist.username}</strong>'s solo work</p>
+                  {
+                    <iframe width="100%" height="300" scrolling="no" style={{'border':'0'}} allow="autoplay" src={trackUrl}></iframe>
+                  }
+                </div>
               </div>
             </div>
 

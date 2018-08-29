@@ -12,6 +12,7 @@ const userSchema = new Schema({
   blurb: {type: String, default: ""},
   email: {type: String, default: ""},
   username: {type: String, default: ""},
+  exampleTrack: String,
   likedTracks: [String],
   myTracks: [String],
   genres: [String],

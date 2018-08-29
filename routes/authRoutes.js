@@ -43,10 +43,11 @@ module.exports = app => {
     const userById = await User.findByIdAndUpdate(
       req.user._id,
       {
-        username: req.body.username || 'default',
-        blurb: req.body.blurb || 'A little bit about who I am',
-        email: req.body.email || 'example@example.com',
+        username: req.body.username,
+        blurb: req.body.blurb,
+        email: req.body.email,
         likedTracks: req.body.likedTracks,
+        exampleTrack: req.body.exampleTrack,
         myTracks: req.body.myTracks,
         genres: req.body.genres,
         instruments: req.body.instruments

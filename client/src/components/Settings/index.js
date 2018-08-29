@@ -18,6 +18,7 @@ class Settings extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handleBlurbChange = this.handleBlurbChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleExampleTrackChange = this.handleExampleTrackChange.bind(this);
     this.handleGenresChange = this.handleGenresChange.bind(this);
     this.handleInstrumentsChange = this.handleInstrumentsChange.bind(this);
   }
@@ -66,6 +67,10 @@ class Settings extends Component {
     this.setState({ email: event.target.value });
   }
 
+  handleExampleTrackChange(event) {
+    this.setState({ exampleTrack: event.target.value });
+  }
+
   handleGenresChange(values) {
     this.setState({ genres: values });
   }
@@ -93,6 +98,10 @@ class Settings extends Component {
 
     if (!this.state.genres) {
       this.state.genres = this.props.auth.genres;
+    }
+
+    if (!this.state.exampleTrack) {
+      this.state.exampleTrack = this.props.auth.exampleTrack;
     }
 
     if (!this.state.instruments) {
@@ -224,6 +233,21 @@ class Settings extends Component {
                                  value={this.props.auth.email}
                                  placeholder={this.props.auth.email}
                                  onChange={this.handleEmailChange}
+                                 />
+                        </div>
+                      </div>
+
+                      <div className="row profile-entry">
+                        <p className="profile-label">Example Track</p>
+                        <div className="profile-data">
+                          <Field
+                                 name="exampleTrack"
+                                 className="input-data"
+                                 component="input"
+                                 type="text"
+                                 value={this.props.auth.exampleTrack}
+                                 placeholder="Provide a SoundCloud URL to display on your profile"
+                                 onChange={this.handleExampleTrackChange}
                                  />
                         </div>
                       </div>
