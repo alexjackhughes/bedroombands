@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     return res.status(401).send({ error: "You don't have any tracks!" });
 
   myTracks.map(track => {
-    if (req.params.trackId == trackId)
+    if (req.params.trackId == track)
       next();
   });
   return res.status(401).send({ error: "You don't own this track!" });

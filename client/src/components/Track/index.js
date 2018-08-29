@@ -50,6 +50,26 @@ class Track extends Component {
       });
   }
 
+  editTrack() {
+    console.log('track Edited');
+  }
+
+  deleteTrack() {
+    let id = this.props.track._id;
+
+    console.log('working delete');
+
+    axios.delete("/api/track/" + id)
+      // handle success
+      .then((response) => {
+        console.log('Track deleted');
+      })
+      // handle error
+      .catch((error) => {
+        console.log('Error', error);
+      });
+  }
+
   // Allows the user to like a track
   likeTrack() {
     let id = this.props.track._id;
@@ -136,6 +156,27 @@ class Track extends Component {
     return stars;
   }
 
+  // loop through artists and see if id matches logged in user
+  renderEditingTools() {
+
+    let x = false;
+    this.props.track.artists.map((artist) => {
+      if(String(this.props.auth._id) === String(artist)) {
+        x = true;
+      }
+    });
+
+    if(x) {
+      return(
+        <div className="row">
+          {/* <div onClick={() => this.editTrack()} className="far fa-edit track-tools edit-icon" /> */}
+          <div onClick={() => this.deleteTrack()} className="far fa-trash-alt track-tools delete-icon" />
+        </div>
+      );
+    }
+    return <span />;
+  }
+
   render() {
 
     switch (this.state && this.state.track && this.state.users !== undefined
@@ -144,7 +185,7 @@ class Track extends Component {
         return <span></span>;
 
       default:
-        console.log('props', this.props.auth);
+        console.log('preeprs', track);
         let artists = this.state.users;
         let track = this.props.track;
         let trackUrl = `https://w.soundcloud.com/player/?url=${track.soundCloudUrl}&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
@@ -180,6 +221,7 @@ class Track extends Component {
                       <div className="row rating-section">
                         {this.renderRating(track.currentRating)}
                       </div>
+                      {this.renderEditingTools()}
                     </div>
                   </div>
 

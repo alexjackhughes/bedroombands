@@ -161,13 +161,17 @@ module.exports = app => {
 
   // DELETE: Delete one from my tracks
   app.delete("/api/my-tracks/:trackId", requireLogin, async (req, res) => {
+
     let index = req.user.myTracks.indexOf(req.params.trackId);
+
     if (index > -1) {
       req.user.myTracks.splice(index, 1);
       const user = await req.user.save();
 
-      res.send(user);
+      return res.send(user);
     }
+
+    return res.status(404).send({ message: "You don't own this track" });
   });
 
   // Rate a track has a number of conditions:
@@ -281,6 +285,8 @@ module.exports = app => {
     requireLogin,
     requireTrack,
     async (req, res) => {
+
+      console.log('got to here');
       Track.findByIdAndRemove(req.params.trackId)
         .then(track => {
           res.send({ message: "The Track was deleted successfully" });
