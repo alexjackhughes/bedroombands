@@ -36,7 +36,6 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/account" component={Account} />
-              <Route exact path="/surveys/new" component={TrackNew} />
               <Route exact path="/tracks" component={Dashboard} />
               <Route exact path="/settings" component={Settings} />
               <Route exact path="/artist/:userId" component={Artist} />
@@ -44,7 +43,7 @@ class App extends Component {
               <Route exact path="/tracks/:type" component={GenericTracks} />
               <Route exact path="/tracks/:type/:rating" component={GenericTracks} />
               <Route exact path="/track/:trackId" component={TrackExpanded} />
-              <Route exact path="/tracks/new" component={SurveyNew} />
+              <Route exact path="/upload/track" component={SurveyNew} />
               <Route component={NotFound}/>
             </Switch>
           </div>

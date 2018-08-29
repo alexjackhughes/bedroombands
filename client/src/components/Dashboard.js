@@ -41,7 +41,7 @@ class Dashboard extends Component {
             <div className="row">
               <TrackList />
             </div>
-            <Link to="/tracks/new">
+            <Link to="/upload/track">
               <i className="fas fa-plus-circle upload-track"></i>
             </Link>
           </div>

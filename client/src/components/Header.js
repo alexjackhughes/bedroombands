@@ -13,7 +13,7 @@ class Header extends Component {
         return (
           <li className="right">
             <a href="/auth/google" className="nav-button">
-              <span>LOGIN</span>
+              <span>SIGN UP</span>
             </a>
 
           </li>
