@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import NotFound from '../NotFound';
@@ -36,6 +37,47 @@ class TrackExpanded extends Component {
   // needs to call the like track api for this user
   likeTrack() {
     console.log('track liked');
+  }
+
+  editTrack() {
+    console.log('track Edited');
+  }
+
+  deleteTrack() {
+    let id = this.props.track._id;
+
+    console.log('working delete');
+
+    axios.delete("/api/track/" + id)
+      // handle success
+      .then((response) => {
+        console.log('Track deleted');
+      })
+      // handle error
+      .catch((error) => {
+        console.log('Error', error);
+      });
+  }
+
+  // loop through artists and see if id matches logged in user
+  renderEditingTools() {
+
+    let x = false;
+    this.state.track.artists.map((artist) => {
+      if(String(this.props.auth._id) === String(artist)) {
+        x = true;
+      }
+    });
+
+    if(x) {
+      return(
+        <div className="row">
+          <div onClick={() => this.editTrack()} className="far fa-edit track-tools edit-icon" />
+          <div onClick={() => this.deleteTrack()} className="far fa-trash-alt track-tools delete-icon" />
+        </div>
+      );
+    }
+    return <span />;
   }
 
   renderArtistList(artists) {
@@ -88,11 +130,11 @@ class TrackExpanded extends Component {
   }
 
   render() {
-    switch (this.state && this.state.track && this.state.users !== undefined  && this.state.users.length !== 0) {
+    switch (this.state && this.state.track && this.state.users !== undefined  && this.state.users.length !== 0 && this.props.auth && this.props.track) {
       case null:
         return <NotFound />;
 
-      case (this.state.users !== undefined && this.state.users.length !== 0):
+      default:
         let artists = this.state.users;
         let track = this.state.track;
         let trackUrl = `https://w.soundcloud.com/player/?url=${track.soundCloudUrl}&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
@@ -135,17 +177,19 @@ class TrackExpanded extends Component {
                       <div className="row rating-section">
                         {this.renderRating(track.currentRating)}
                       </div>
+                      {this.renderEditingTools()}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
         );
-
-      default:
-        return(<div></div>);
     }
   }
 }
 
-export default TrackExpanded;
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(TrackExpanded);

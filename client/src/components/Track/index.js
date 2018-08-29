@@ -181,8 +181,9 @@ class Track extends Component {
 
     switch (this.state && this.state.track && this.state.users !== undefined
             && this.state.users.length !== 0 && this.props.auth) {
+
       case null:
-        return <span></span>;
+        return <span />;
 
       default:
         console.log('preeprs', track);
@@ -221,7 +222,6 @@ class Track extends Component {
                       <div className="row rating-section">
                         {this.renderRating(track.currentRating)}
                       </div>
-                      {this.renderEditingTools()}
                     </div>
                   </div>
 
