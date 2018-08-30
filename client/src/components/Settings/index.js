@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import _ from "lodash";
 import axios from "axios";
-import gravatar from 'gravatar';
+import gravatar from "gravatar";
 
 import * as actions from "../../actions";
 import RFReactSelect from "./RFReactSelect";
@@ -24,23 +24,23 @@ class Settings extends Component {
   }
 
   componentDidMount() {
-    console.log('props', this.props);
+    console.log("props", this.props);
 
     this.setState({
-      settingsSubmit:false
+      settingsSubmit: false
     });
   }
-
 
   /*
     Takes the current URL and adds it
     to the user's clipboard and sets an alert
    */
   copyShareLink() {
-    let copyText = document.createElement('textarea');
-    copyText.value = 'https://lit-caverns-14892.herokuapp.com/' + this.props.auth.id;
-    copyText.setAttribute('readonly', '');
-    copyText.style = {position: 'absolute', left: '-9999px'};
+    let copyText = document.createElement("textarea");
+    copyText.value =
+      "https://lit-caverns-14892.herokuapp.com/" + this.props.auth.id;
+    copyText.setAttribute("readonly", "");
+    copyText.style = { position: "absolute", left: "-9999px" };
 
     document.body.appendChild(copyText);
     copyText.select();
@@ -82,7 +82,7 @@ class Settings extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log('submit');
+    console.log("submit");
 
     if (!this.state.username) {
       this.state.username = this.props.auth.username;
@@ -122,7 +122,7 @@ class Settings extends Component {
       console.log("user api was updated");
     });
 
-    this.setState({settingsSubmit: true});
+    this.setState({ settingsSubmit: true });
 
     //actions.submitUser(this.state, this.props.history);
   }
@@ -130,7 +130,6 @@ class Settings extends Component {
   /* Render Components */
 
   renderUserForm() {
-
     const genres = [
       { value: "Techno", label: "Techno" },
       { value: "Rock", label: "Rock" },
@@ -143,7 +142,12 @@ class Settings extends Component {
       { value: "Bandola", label: "Bandola" }
     ];
 
-    switch (this.props && this.props.auth && this.state && this.state.settingsSubmit !== undefined) {
+    switch (
+      this.props &&
+        this.props.auth &&
+        this.state &&
+        this.state.settingsSubmit !== undefined
+    ) {
       case null:
         return <div>Loading...</div>;
 
@@ -151,59 +155,68 @@ class Settings extends Component {
         return <Redirect to="/" />;
 
       default:
-        console.log('auth', this.props.auth);
+        console.log("auth", this.props.auth);
         let artist = this.props.auth;
-        let gravatarUrl = gravatar.url(artist.email, {s: '400'}); // Might need to remove options
+        let gravatarUrl = gravatar.url(artist.email, { s: "400" }); // Might need to remove options
         return (
-          <div className="row">
-            <div className="col s6 offset-s3">
-              <div className="row centre">
-
-                {
-                  artist.username === "" ?
-                  <div class="row">
-                    <div class="alert success">
-                      <p>Thanks for joining! Make sure to set your username and email address.</p>
-                    </div>
+          <div className="row" style={{ textAlign: "center" }}>
+            <div className="row centre">
+              {artist.username === "" ? (
+                <div class="row">
+                  <div class="alert success">
+                    <p>
+                      Thanks for joining! Make sure to set your username and
+                      email address.
+                    </p>
                   </div>
-                  : <span />
-                }
-
-                <img className="profile-image" src={'http:' + gravatarUrl} />
+                </div>
+              ) : (
+                <span />
+              )}
+            </div>
+            <div className="col s6 offset-s3 form-mobile">
+              <div className="row">
+                <img className="profile-image" src={"http:" + gravatarUrl} />
                 <h2 className="profile-title">{artist.username}</h2>
               </div>
 
               <div className="row centre">
-                <a href={'/artist/' + this.props.auth._id + '/tracks'}
-                   className="blue lighten-2 waves-effect waves-light btn-large">
-                  <i className="fas fa-play btn-far"></i> TRACKS
+                <a
+                  href={"/artist/" + this.props.auth._id + "/tracks"}
+                  className="blue lighten-2 waves-effect waves-light btn-large"
+                >
+                  <i className="fas fa-play btn-far" /> TRACKS
                 </a>
-                <a href="#" onClick={this.copyShareLink}
-                   className="blue lighten-2 waves-effect waves-light btn-large">
-                  <i className="fas fa-share btn-far"></i> SHARE
+                <a
+                  href="#"
+                  onClick={this.copyShareLink}
+                  className="blue lighten-2 waves-effect waves-light btn-large"
+                >
+                  <i className="fas fa-share btn-far" /> SHARE
                 </a>
-                <a href={'/artist/' + this.props.auth._id + '/likes'}
-                   className="blue lighten-2 waves-effect waves-light btn-large">
-                  <i className="fas fa-heart btn-far"></i> LIKES
+                <a
+                  href={"/artist/" + this.props.auth._id + "/likes"}
+                  className="blue lighten-2 waves-effect waves-light btn-large"
+                >
+                  <i className="fas fa-heart btn-far" /> LIKES
                 </a>
               </div>
               <form onSubmit={this.handleSubmit}>
                 <div>
                   <div className="row">
                     <div className="highlight">
-
                       <div className="row profile-entry">
                         <p className="profile-label">Username</p>
                         <div className="profile-data">
                           <Field
-                                 name="username"
-                                 className="input-data"
-                                 component="input"
-                                 type="text"
-                                 value={this.props.auth.username}
-                                 placeholder={this.props.auth.username}
-                                 onChange={this.handleUsernameChange}
-                                 />
+                            name="username"
+                            className="input-data"
+                            component="input"
+                            type="text"
+                            value={this.props.auth.username}
+                            placeholder={this.props.auth.username}
+                            onChange={this.handleUsernameChange}
+                          />
                         </div>
                       </div>
 
@@ -211,14 +224,14 @@ class Settings extends Component {
                         <p className="profile-label">About Me</p>
                         <div className="profile-data">
                           <Field
-                                 name="blurb"
-                                 className="input-data"
-                                 component="input"
-                                 type="text"
-                                 value={this.props.auth.blurb}
-                                 placeholder={this.props.auth.blurb}
-                                 onChange={this.handleBlurbChange}
-                                 />
+                            name="blurb"
+                            className="input-data"
+                            component="input"
+                            type="text"
+                            value={this.props.auth.blurb}
+                            placeholder={this.props.auth.blurb}
+                            onChange={this.handleBlurbChange}
+                          />
                         </div>
                       </div>
 
@@ -226,14 +239,14 @@ class Settings extends Component {
                         <p className="profile-label">Email</p>
                         <div className="profile-data">
                           <Field
-                                 name="email"
-                                 className="input-data"
-                                 component="input"
-                                 type="text"
-                                 value={this.props.auth.email}
-                                 placeholder={this.props.auth.email}
-                                 onChange={this.handleEmailChange}
-                                 />
+                            name="email"
+                            className="input-data"
+                            component="input"
+                            type="text"
+                            value={this.props.auth.email}
+                            placeholder={this.props.auth.email}
+                            onChange={this.handleEmailChange}
+                          />
                         </div>
                       </div>
 
@@ -241,58 +254,61 @@ class Settings extends Component {
                         <p className="profile-label">Example Track</p>
                         <div className="profile-data">
                           <Field
-                                 name="exampleTrack"
-                                 className="input-data"
-                                 component="input"
-                                 type="text"
-                                 value={this.props.auth.exampleTrack}
-                                 placeholder="Provide a SoundCloud URL to display on your profile"
-                                 onChange={this.handleExampleTrackChange}
-                                 />
+                            name="exampleTrack"
+                            className="input-data"
+                            component="input"
+                            type="text"
+                            value={this.props.auth.exampleTrack}
+                            placeholder="Provide a SoundCloud URL to display on your profile"
+                            onChange={this.handleExampleTrackChange}
+                          />
                         </div>
                       </div>
 
                       <div className="row profile-entry">
                         <p className="profile-label">Genres</p>
                         <Field
-                               multi={true}
-                               name="genres"
-                               onChange={this.handleGenresChange}
-                               value={this.props.auth.genres}
-                               options={genres}
-                               component={RFReactSelect}
-                               />
+                          multi={true}
+                          name="genres"
+                          onChange={this.handleGenresChange}
+                          value={this.props.auth.genres}
+                          options={genres}
+                          component={RFReactSelect}
+                        />
                       </div>
 
                       <div className="row profile-entry">
                         <p className="profile-label">Instruments</p>
                         <Field
-                               multi={true}
-                               name="instruments"
-                               onChange={this.handleInstrumentsChange}
-                               value={this.props.auth.instruments}
-                               options={instruments}
-                               component={RFReactSelect}
-                               />
+                          multi={true}
+                          name="instruments"
+                          onChange={this.handleInstrumentsChange}
+                          value={this.props.auth.instruments}
+                          options={instruments}
+                          component={RFReactSelect}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <button type="submit" className="green accent-3 waves-effect waves-light btn-large">
+                <button
+                  type="submit"
+                  className="green accent-3 waves-effect waves-light btn-large"
+                >
                   Submit
                 </button>
               </form>
 
-              {
-                this.state.settingsSubmit ?
+              {this.state.settingsSubmit ? (
                 <div class="row">
                   <div class="alert success">
                     <p>Your settings have been updated!</p>
                   </div>
                 </div>
-                : <span />
-              }
+              ) : (
+                <span />
+              )}
             </div>
           </div>
         );
@@ -313,4 +329,7 @@ const UserForm = reduxForm({
   form: "userForm"
 })(Settings);
 
-export default connect(mapStateToProps, actions)(withRouter(UserForm));
+export default connect(
+  mapStateToProps,
+  actions
+)(withRouter(UserForm));
