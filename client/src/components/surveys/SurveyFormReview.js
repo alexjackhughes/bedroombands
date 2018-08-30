@@ -7,7 +7,6 @@ import FIELDS from "./formFields";
 import * as actions from "../../actions";
 
 const SurveyFormReview = ({ onCancel, formValues, submitTrack, history }) => {
-
   const reviewFields = _.map(FIELDS, ({ name, label }) => {
     return (
       <div key={name} className="row profile-entry">
@@ -17,7 +16,7 @@ const SurveyFormReview = ({ onCancel, formValues, submitTrack, history }) => {
     );
   });
 
-  switch(formValues) {
+  switch (formValues) {
     case null:
       return <div />;
 
@@ -25,27 +24,30 @@ const SurveyFormReview = ({ onCancel, formValues, submitTrack, history }) => {
       return <Redirect to="/" />;
 
     default:
-    return (
-      <div className="row">
-        <div className="col s6 offset-s3">
-          <h2 className="profile-title centre">Confirm Track</h2>
-          <div className="highlight">
-            <span>{reviewFields}</span>
-            <button className="red accent-3 waves-effect waves-light btn-large" onClick={onCancel}>
-              Back <i className="fas fa-times-circle btn-far"></i>
-            </button>
-            <button
-              className="green accent-3 waves-effect waves-light btn-large right"
-              onClick={() => {
-                submitTrack(formValues, history);
-              }}
-            >
-              Are You Sure? <i className="fas fa-save btn-far"></i>
-            </button>
+      return (
+        <div className="row">
+          <div className="col s6 offset-s3 form-mobile">
+            <h2 className="profile-title centre">Confirm Track</h2>
+            <div className="highlight">
+              <span>{reviewFields}</span>
+              <button
+                className="red accent-3 waves-effect waves-light btn-large"
+                onClick={onCancel}
+              >
+                Back <i className="fas fa-times-circle btn-far" />
+              </button>
+              <button
+                className="green accent-3 waves-effect waves-light btn-large right"
+                onClick={() => {
+                  submitTrack(formValues, history);
+                }}
+              >
+                SAVE <i className="fas fa-save btn-far" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
   }
 };
 
@@ -53,4 +55,7 @@ function mapStateToProps(state) {
   return { formValues: state.form.surveyForm.values };
 }
 
-export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview));
+export default connect(
+  mapStateToProps,
+  actions
+)(withRouter(SurveyFormReview));

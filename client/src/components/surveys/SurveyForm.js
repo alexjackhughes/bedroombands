@@ -88,7 +88,13 @@ class SurveyForm extends Component {
 
     const artists = this.getUsers();
 
-    switch(this.props.auth && this.state && this.state.artists && this.state.genres && this.state.instruments) {
+    switch (
+      this.props.auth &&
+        this.state &&
+        this.state.artists &&
+        this.state.genres &&
+        this.state.instruments
+    ) {
       case null:
         return <div />;
 
@@ -98,76 +104,98 @@ class SurveyForm extends Component {
       default:
         return (
           <div className="row">
-            <div className="col s6 offset-s3">
+            <div className="col s6 offset-s3 form-mobile">
               <h1 className="profile-title centre">Add Track</h1>
-            <form
-              onSubmit={this.props.handleSubmit(() => this.props.onSurveySubmit())}
-            >
-              <div className="row">
-                <div className="highlight">
+              <form
+                onSubmit={this.props.handleSubmit(() =>
+                  this.props.onSurveySubmit()
+                )}
+              >
+                <div className="row">
+                  <div className="highlight">
+                    <div className="row profile-entry">
+                      <p className="profile-label">Titles</p>
+                      <div className="profile-data">
+                        <Field
+                          name="title"
+                          component="input"
+                          type="text"
+                          className="input-data"
+                        />
+                      </div>
+                    </div>
 
-                <div className="row profile-entry">
-                  <p className="profile-label">Titles</p>
-                  <div className="profile-data">
-                    <Field name="title" component="input" type="text" className="input-data" />
+                    <div className="row profile-entry">
+                      <p className="profile-label">SoundCloud URL</p>
+                      <div className="profile-data">
+                        <Field
+                          name="soundCloudUrl"
+                          component="input"
+                          type="text"
+                          className="input-data"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="row profile-entry">
+                      <p className="profile-label">Description</p>
+                      <div className="profile-data">
+                        <Field
+                          name="description"
+                          component="input"
+                          type="text"
+                          className="input-data"
+                        />
+                      </div>
+                    </div>
+
+                    <p className="profile-label">Artists</p>
+                    <Field
+                      multi={true}
+                      name="artists"
+                      onChange={this.handleArtistsChange}
+                      value={this.state.artists}
+                      options={artists}
+                      component={RFReactSelect}
+                    />
+
+                    <p className="profile-label">Genres</p>
+                    <Field
+                      multi={true}
+                      name="genres"
+                      onChange={this.handleGenresChange}
+                      value={this.state.genres}
+                      options={genres}
+                      component={RFReactSelect}
+                    />
+
+                    <p className="profile-label">Instruments</p>
+                    <Field
+                      multi={true}
+                      name="instruments"
+                      onChange={this.handleInstrumentsChange}
+                      value={this.state.instruments}
+                      options={instruments}
+                      component={RFReactSelect}
+                    />
+
+                    <Link
+                      to="/tracks"
+                      className="red accent-3 waves-effect waves-light btn-large"
+                    >
+                      Cancel <i className="fas fa-times-circle btn-far" />
+                    </Link>
+                    <button
+                      type="submit"
+                      className="green accent-3 waves-effect waves-light btn-large right"
+                    >
+                      Next <i className="fas fa-save btn-far" />
+                    </button>
                   </div>
                 </div>
-
-                <div className="row profile-entry">
-                  <p className="profile-label">SoundCloud URL</p>
-                  <div className="profile-data">
-                    <Field name="soundCloudUrl" component="input" type="text" className="input-data" />
-                  </div>
-                </div>
-
-                <div className="row profile-entry">
-                  <p className="profile-label">Description</p>
-                  <div className="profile-data">
-                    <Field name="description" component="input" type="text" className="input-data" />
-                  </div>
-                </div>
-
-                <p className="profile-label">Artists</p>
-                <Field
-                  multi={true}
-                  name="artists"
-                  onChange={this.handleArtistsChange}
-                  value={this.state.artists}
-                  options={artists}
-                  component={RFReactSelect}
-                />
-
-                <p className="profile-label">Genres</p>
-                <Field
-                  multi={true}
-                  name="genres"
-                  onChange={this.handleGenresChange}
-                  value={this.state.genres}
-                  options={genres}
-                  component={RFReactSelect}
-                />
-
-                <p className="profile-label">Instruments</p>
-                <Field
-                  multi={true}
-                  name="instruments"
-                  onChange={this.handleInstrumentsChange}
-                  value={this.state.instruments}
-                  options={instruments}
-                  component={RFReactSelect}
-                />
-
-              <Link to="/tracks" className="red accent-3 waves-effect waves-light btn-large">
-                Cancel <i className="fas fa-times-circle btn-far"></i>
-              </Link>
-              <button type="submit" className="green accent-3 waves-effect waves-light btn-large right">
-                Next <i className="fas fa-save btn-far"></i>
-              </button>
+              </form>
             </div>
           </div>
-            </form>
-          </div>
-        </div>
         );
     }
   }
@@ -189,7 +217,6 @@ function validate(values) {
   return errors;
 }
 
-
 const TrackForm = reduxForm({
   validate,
   form: "surveyForm",
@@ -200,4 +227,7 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps, actions)(withRouter(TrackForm));
+export default connect(
+  mapStateToProps,
+  actions
+)(withRouter(TrackForm));
