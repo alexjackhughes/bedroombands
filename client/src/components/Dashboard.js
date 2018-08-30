@@ -22,9 +22,8 @@ import "./Dashboard.css";
  */
 
 class Dashboard extends Component {
-
   render() {
-    switch(this.props.auth) {
+    switch (this.props.auth) {
       case null:
 
       case false:
@@ -32,24 +31,24 @@ class Dashboard extends Component {
 
       default:
         return (
-        <div className="row margin-sizing">
-          <div className="col s3 sidebar">
-            <Sidebar id={this.props.auth._id} />
-          </div>
-
-          <div className="col s8 main-track-section">
-            <div className="row">
-              <TrackList />
+          <div className="row margin-sizing">
+            <div className="col s3 sidebar hide-sidebar-mobile">
+              <Sidebar id={this.props.auth._id} />
             </div>
-            <Link to="/upload/track">
-              <i className="fas fa-plus-circle upload-track"></i>
-            </Link>
+
+            <div className="col s8 main-track-section dashboard-mobile">
+              <div className="row add-margin-mobile">
+                <TrackList />
+              </div>
+              <Link to="/upload/track">
+                <i className="fas fa-plus-circle upload-track" />
+              </Link>
+            </div>
           </div>
-        </div>
-      );
+        );
     }
   }
-};
+}
 
 function mapStateToProps({ auth }) {
   return { auth };

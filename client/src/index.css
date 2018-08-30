@@ -10,10 +10,24 @@
     margin: 1px !important;
   } */
 
+  .hide-sidebar-mobile {
+    display: none !important;
+  }
+
   .track-mobile {
     margin-left: 0% !important;
     float: none !important;
     width: 100% !important;
+  }
+
+  .dashboard-mobile {
+    margin-left: 0% !important;
+    float: none !important;
+    width: 100% !important;
+  }
+
+  .add-margin-mobile {
+    margin: 10px !important;
   }
 
   .form-mobile {
