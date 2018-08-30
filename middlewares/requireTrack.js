@@ -7,9 +7,16 @@ module.exports = (req, res, next) => {
   if (myTracks.length < 1 || myTracks == undefined)
     return res.status(401).send({ error: "You don't have any tracks!" });
 
-  myTracks.map(track => {
-    if (req.params.trackId == track)
-      next();
+  let check = true;
+  myTracks.map((track) => {
+    if(String(req.params.trackId) == String(track)) {
+      check = false;
+    }
   });
-  return res.status(401).send({ error: "You don't own this track!" });
+
+  if(check) {
+    return res.status(401).send({ error: "You don't own this track!" });
+  } else {
+    next();
+  }
 };

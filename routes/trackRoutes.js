@@ -266,12 +266,13 @@ module.exports = app => {
       {
         title: req.body.title,
         soundCloudUrl: req.body.soundCloudUrl,
-        blurb: req.body.blurb,
+        description: req.body.description,
         artists: req.body.artists,
         ratings: req.body.ratings,
         currentRating: req.body.currentRating,
         genres: req.body.genres,
-        instruments: req.body.instruments
+        instruments: req.body.instruments,
+        type: req.body.type
       },
       { new: true }
     ).then(track => {

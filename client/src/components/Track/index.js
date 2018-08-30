@@ -86,7 +86,7 @@ class Track extends Component {
       // always executed
       .then(() => {
         console.log('track liked');
-        window.location.reload()
+        window.location.reload();
       });
   }
 
@@ -180,7 +180,7 @@ class Track extends Component {
   render() {
 
     switch (this.state && this.state.track && this.state.users !== undefined
-            && this.state.users.length !== 0 && this.props.auth) {
+            && this.state.users.length !== 0 && this.props.auth && this.props.track) {
 
       case null:
         return <span />;

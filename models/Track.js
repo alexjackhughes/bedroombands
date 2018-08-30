@@ -6,6 +6,7 @@ const trackSchema = new Schema({
   id: String,
   title: String,
   soundCloudUrl: String,
+  type: String,
   blurb: String,
   artists: [String],
   ratings: [{
