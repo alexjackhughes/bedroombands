@@ -10,6 +10,14 @@
     margin: 1px !important;
   } */
 
+  .profile-title {
+    font-size: 32px !important;
+  }
+
+  .input-data {
+    font-size: 10px !important;
+  }
+
   .hide-sidebar-mobile {
     display: none !important;
   }
@@ -69,8 +77,8 @@
     opacity: 0.5 !important;
   }
 
-  ..mobile-menu-text:hover {
-    opacity: 1 !important;
+  .mobile-menu-text:hover {
+    opacity: 0.8 !important;
   }
 
   nav {

@@ -237,7 +237,7 @@ class Track extends Component {
                   <div className="track-head">
                     <div className="row">
                       <div className="col s8">
-                        <h1 className="track-title">{track.title}</h1>
+                        <h1 className="profile-title">{track.title}</h1>
                         <div className="track-authors">
                           <span>By</span>{" "}
                           {artists !== undefined ? (
