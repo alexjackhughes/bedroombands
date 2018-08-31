@@ -4,6 +4,19 @@ import { Link } from "react-router-dom";
 import Payments from "./Payments";
 
 class Header extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      mobileMenu: false
+    }
+  }
+
+  callMobileMenu() {
+    this.setState({mobileMenu: !this.state.mobileMenu});
+    console.log("menu called", this.state.mobileMenu);
+  }
+
   renderContent() {
     switch (this.props.auth) {
       case null:
@@ -15,7 +28,6 @@ class Header extends Component {
             <a href="/auth/google" className="nav-button">
               <span>SIGN UP</span>
             </a>
-
           </li>
         );
 
@@ -51,6 +63,7 @@ class Header extends Component {
 
   render() {
     return (
+      <span>
       <nav style={{ height: "80px" }}>
         <div className="nav-wrapper grey lighten-5 z-depth-0">
           <Link
@@ -63,11 +76,56 @@ class Header extends Component {
               style={{ height: "85px", width: "300px" }}
             />
           </Link>
+          <div className="menu-section right">
+            <span
+              onClick={() => this.callMobileMenu()}
+              className="fas fa-bars menu-icon"
+            />
+          </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             {this.renderContent()}
           </ul>
         </div>
       </nav>
+      <div className="row">
+        {
+          this.state.mobileMenu ?
+          <div className="col s8 side-menu">
+            <div className="row">
+              <Link to="/tracks" className="right mobile-menu-text">
+                Tracks
+              </Link>
+            </div>
+            <div className="row">
+              <Link to="/settings" className="right mobile-menu-text">
+                My Profile
+              </Link>
+            </div>
+            <div className="row">
+              <Link to={"/artist/" + this.props.auth._id + "/liked"} className="right mobile-menu-text">
+                Liked Tracks
+              </Link>
+            </div>
+            <div className="row">
+              <Link to={"/artist/" + this.props.auth._id + "/tracks"} className="right mobile-menu-text">
+                My Tracks
+              </Link>
+            </div>
+            <div className="row">
+              <Link to="/upload/track" className="right mobile-menu-text">
+                Add Track
+              </Link>
+            </div>
+            <div className="row">
+              <a href="/api/logout" className="right mobile-menu-text">
+                Logout
+              </a>
+            </div>
+          </div>
+          : <span className="desktop-hide" />
+        }
+    </div>
+  </span>
     );
   }
 }

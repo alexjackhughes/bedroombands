@@ -35,6 +35,58 @@
     float: none !important;
     width: 100% !important;
   }
+
+  .menu-section {
+    display: block !important;
+    margin-top: 10px !important;
+    margin-right: 5px !important;
+  }
+
+  .menu-icon {
+    color: #2b3854 !important;
+    padding: 10px !important;
+    font-size: 40px !important;
+  }
+
+  .side-menu {
+    margin-top: 80px !important;
+    display: block !important;
+    background-color: #2B3854 !important;
+    position: fixed !important;
+    left: 0px;
+    top: 0px;
+    padding-bottom: 3000px !important;
+    z-index: 9;
+    box-shadow: 0 0 3rem rgba(0, 0, 0, 0.2);
+    padding: 30px;
+  }
+
+  .mobile-menu-text {
+    color: rgba(246, 248, 250, 1) !important;
+    font-size: 25px !important;
+    padding: 10px !important;
+    font-weight: bold;
+    opacity: 0.5 !important;
+  }
+
+  ..mobile-menu-text:hover {
+    opacity: 1 !important;
+  }
+
+  nav {
+    left: 0px;
+    top: 0px;
+    position: fixed !important;
+    z-index: 10;
+  }
+}
+
+.side-menu {
+  display: none;
+}
+
+.desktop-hide {
+    display: none;
 }
 
 /* Desktop */
