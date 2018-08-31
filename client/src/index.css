@@ -79,6 +79,16 @@
     position: fixed !important;
     z-index: 10;
   }
+
+  div {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+
+div {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
 }
 
 .side-menu {
