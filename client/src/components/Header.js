@@ -62,6 +62,8 @@ class Header extends Component {
   }
 
   render() {
+
+
     return (
       <span>
       <nav style={{ height: "80px" }}>
@@ -76,12 +78,16 @@ class Header extends Component {
               style={{ height: "85px", width: "300px" }}
             />
           </Link>
-          <div className="menu-section right">
-            <span
-              onClick={() => this.callMobileMenu()}
-              className="fas fa-bars menu-icon"
-            />
-          </div>
+          {
+            this.props.auth ?
+            <div className="menu-section right">
+              <span
+                onClick={() => this.callMobileMenu()}
+                className="fas fa-bars menu-icon"
+              />
+            </div>
+            : <span />
+          }
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             {this.renderContent()}
           </ul>
