@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default () => {
   const footerStyling = {
@@ -21,24 +22,29 @@ export default () => {
             <h5 className="white-text">Links</h5>
             <ul>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <Link className="grey-text text-lighten-3" to="/tracks">
                   View Tracks
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
+                <Link className="grey-text text-lighten-3" to="/upload/track">
                   Upload a Track
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  My Favourites
-                </a>
+                <Link className="grey-text text-lighten-3" to="/settings">
+                  User Profile
+                </Link>
               </li>
               <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  My Tracks
-                </a>
+                <Link className="grey-text text-lighten-3" to="/docs/privacy-policy">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link className="grey-text text-lighten-3" to="/docs/terms-and-conditions">
+                  Terms & Conditions
+                </Link>
               </li>
             </ul>
           </div>

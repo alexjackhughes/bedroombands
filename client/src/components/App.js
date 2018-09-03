@@ -15,6 +15,10 @@ import TrackExpanded from "./TrackExpanded";
 import UserTracks from "./UserTracks";
 import GenericTracks from "./GenericTracks";
 import NotFound from "./NotFound";
+
+import Terms from "./static/Terms";
+import PrivacyPolicy from "./static/PrivacyPolicy";
+
 import Footer from "./Footer";
 
 class App extends Component {
@@ -38,6 +42,8 @@ class App extends Component {
               <Route exact path="/account" component={Account} />
               <Route exact path="/tracks" component={Dashboard} />
               <Route exact path="/settings" component={Settings} />
+              <Route exact path="/docs/terms-and-conditions" component={Terms} />
+              <Route exact path="/docs/privacy-policy" component={PrivacyPolicy} />
               <Route exact path="/artist/:userId" component={Artist} />
               <Route exact path="/artist/:userId/:type" component={UserTracks} />
               <Route exact path="/tracks/:type" component={GenericTracks} />
