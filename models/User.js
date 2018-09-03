@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 /* Create Schema */
@@ -8,10 +8,12 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
-  username: {type: String, default: ""},
-  blurb: {type: String, default: ""},
-  email: {type: String, default: ""},
-  username: {type: String, default: ""},
+  username: { type: String, default: String(Math.random() * 1000 + 1) },
+  blurb: {
+    type: String,
+    default: "My favourite band is Jedward and maybe I should change my bio"
+  },
+  email: { type: String, default: "example@bedroombands.com" },
   exampleTrack: String,
   likedTracks: [String],
   myTracks: [String],
@@ -20,4 +22,4 @@ const userSchema = new Schema({
 });
 
 /* Assign Schema to Collection */
-mongoose.model('users', userSchema);
+mongoose.model("users", userSchema);
