@@ -123,7 +123,7 @@ class Settings extends Component {
     });
 
     this.setState({ settingsSubmit: true });
-
+    window.location.reload();
     //actions.submitUser(this.state, this.props.history);
   }
 
@@ -131,15 +131,32 @@ class Settings extends Component {
 
   renderUserForm() {
     const genres = [
-      { value: "Techno", label: "Techno" },
       { value: "Rock", label: "Rock" },
-      { value: "Metal", label: "Metal" }
+      { value: "Indie", label: "Indie" },
+      { value: "Metal", label: "Metal" },
+      { value: "Pop", label: "Pop" },
+      { value: "R&B", label: "R&B" },
+      { value: "Hip-Hop", label: "Hip-Hop" },
+      { value: "Jazz", label: "Jazz" },
+      { value: "Classical", label: "Classical" },
+      { value: "World", label: "World" },
+      { value: "Blues", label: "Blues" },
+      { value: "Acoustic", label: "Acoustic" },
+      { value: "Electronic", label: "Electronic" },
+      { value: "Other", label: "Other" }
     ];
 
     const instruments = [
       { value: "Guitar", label: "Guitar" },
+      { value: "Bass", label: "Bass" },
+      { value: "Drums", label: "Drums" },
+      { value: "Vocals", label: "Vocals" },
+      { value: "Piano", label: "Piano" },
+      { value: "Synth", label: "Synth" },
+      { value: "Production", label: "Production" },
       { value: "Accordion", label: "Accordion" },
-      { value: "Bandola", label: "Bandola" }
+      { value: "Bandola", label: "Bandola" },
+      { value: "Other", label: "Other" }
     ];
 
     switch (

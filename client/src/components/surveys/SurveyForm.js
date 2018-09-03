@@ -20,8 +20,31 @@ class SurveyForm extends Component {
     super();
 
     this.state = {
-      instruments: ["Guitar"],
-      genres: ["Rock"],
+      instruments: [
+        "Guitar",
+        "Bass",
+        "Drums",
+        "Vocals",
+        "Piano",
+        "Synth",
+        "Production",
+        "Other"
+      ],
+      genres: [
+        "Rock",
+        "Indie",
+        "Metal",
+        "Pop",
+        "R&B",
+        "Hip Hop",
+        "Jazz",
+        "Classical",
+        "World",
+        "Blues",
+        "Acoustic",
+        "Electronic",
+        "Other"
+      ],
       artists: [{ value: "hello", label: "me" }]
     };
 
