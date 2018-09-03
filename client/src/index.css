@@ -119,6 +119,10 @@ main {
   flex: 1 0 auto;
 }
 
+.add-bottom-space {
+  margin-bottom: 30px;
+}
+
 nav {
   box-shadow: none;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
@@ -715,6 +719,7 @@ h6 {
 .alert {
   text-align: left;
   font-size: 15px;
+  font-weight:bold;
   padding: 10px;
   padding-left: 25px;
   color: rgba(255, 255, 255, 0.9);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Landing extends Component {
 
@@ -18,6 +19,9 @@ class Landing extends Component {
       default:
         return(
           <div style={{ textAlign: 'center' }}>
+            <div class="alert success add-bottom-space">
+              <p>First time to BedroomBands? Sweet! Make sure you've read our <Link to="/docs/terms-and-conditions">T&Cs</Link> and <Link to="/docs/privacy-policy">Privacy Policy</Link> and agree to our use of delicious, delicious cookies.</p>
+            </div>
             <img src="/bedroombands-landing.png"
                   alt="Bedroom Bands Landing"
                   id='landing-img'
