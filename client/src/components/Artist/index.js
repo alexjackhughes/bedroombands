@@ -70,13 +70,6 @@ class Artist extends Component {
                   <i className="fas fa-play btn-far" /> TRACKS
                 </a>
                 <a
-                  href="#"
-                  onClick={this.copyShareLink.bind(this)}
-                  className="blue lighten-2 waves-effect waves-light btn-large"
-                >
-                  <i className="fas fa-share btn-far" /> SHARE
-                </a>
-                <a
                   href={this.props.location.pathname + "/likes"}
                   className="blue lighten-2 waves-effect waves-light btn-large"
                 >

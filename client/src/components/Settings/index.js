@@ -205,13 +205,6 @@ class Settings extends Component {
                   <i className="fas fa-play btn-far" /> TRACKS
                 </a>
                 <a
-                  href="#"
-                  onClick={this.copyShareLink}
-                  className="blue lighten-2 waves-effect waves-light btn-large"
-                >
-                  <i className="fas fa-share btn-far" /> SHARE
-                </a>
-                <a
                   href={"/artist/" + this.props.auth._id + "/likes"}
                   className="blue lighten-2 waves-effect waves-light btn-large"
                 >
