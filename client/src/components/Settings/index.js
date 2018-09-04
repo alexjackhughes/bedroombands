@@ -38,7 +38,7 @@ class Settings extends Component {
   copyShareLink() {
     let copyText = document.createElement("textarea");
     copyText.value =
-      "https://lit-caverns-14892.herokuapp.com/" + this.props.auth.id;
+      "https://bedroombands.com/" + this.props.auth.id;
     copyText.setAttribute("readonly", "");
     copyText.style = { position: "absolute", left: "-9999px" };
 
@@ -79,6 +79,12 @@ class Settings extends Component {
     this.setState({ instruments: values });
   }
 
+  /*
+  Could have very simply have some error tracking here
+  by saving the state to true of an error message
+  and then also setting it to a message like "Username is too long"
+  and then returning null;
+   */
   handleSubmit(event) {
     event.preventDefault();
 
@@ -269,7 +275,7 @@ class Settings extends Component {
                             component="input"
                             type="text"
                             value={this.props.auth.exampleTrack}
-                            placeholder="Provide a SoundCloud URL to display on your profile"
+                            placeholder={this.props.auth.exampleTrack}
                             onChange={this.handleExampleTrackChange}
                           />
                         </div>

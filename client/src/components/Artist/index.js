@@ -104,23 +104,28 @@ class Artist extends Component {
                 </div>
               </div>
 
-              <div className="row" style={{ marginTop: 30 }}>
-                <h2 className="profile-title">Portfolio</h2>
-                <p>
-                  This is an example of some of{" "}
-                  <strong>{artist.username}</strong>'s solo work
-                </p>
-                {
-                  <iframe
-                    width="100%"
-                    height="300"
-                    scrolling="no"
-                    style={{ border: "0" }}
-                    allow="autoplay"
-                    src={trackUrl}
-                  />
-                }
-              </div>
+              {
+                artist.exampleTrack !== "" ?
+                <div className="row" style={{ marginTop: 30 }}>
+                  <h2 className="profile-title">Portfolio</h2>
+                  <p>
+                    This is an example of some of{" "}
+                    <strong>{artist.username}</strong>'s solo work
+                  </p>
+                  {
+                    <iframe
+                      width="100%"
+                      height="300"
+                      scrolling="no"
+                      style={{ border: "0" }}
+                      allow="autoplay"
+                      src={trackUrl}
+                    />
+                  }
+                </div>
+                : <span />
+              }
+
             </div>
           </div>
         );
