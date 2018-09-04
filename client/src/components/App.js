@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import Analytics from 'react-router-ga';
+
 import * as actions from "../actions";
 
 import Header from "./Header";
@@ -25,37 +27,39 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
 
-    console.log(this.props);
+    //ReactGA.initialize('UA-89055959-11'); //Unique Google Analytics tracking number
   }
 
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Header />
-          <div
-            className="container"
-            style={{ paddingTop: "50px", paddingBottom: "50px" }}
-          >
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/account" component={Account} />
-              <Route exact path="/tracks" component={Dashboard} />
-              <Route exact path="/settings" component={Settings} />
-              <Route exact path="/docs/terms-and-conditions" component={Terms} />
-              <Route exact path="/docs/privacy-policy" component={PrivacyPolicy} />
-              <Route exact path="/artist/:userId" component={Artist} />
-              <Route exact path="/artist/:userId/:type" component={UserTracks} />
-              <Route exact path="/tracks/:type" component={GenericTracks} />
-              <Route exact path="/tracks/:type/:rating" component={GenericTracks} />
-              <Route exact path="/track/:trackId" component={TrackExpanded} />
-              <Route exact path="/upload/track" component={SurveyNew} />
-              <Route component={NotFound}/>
-            </Switch>
+        <Analytics id="UA-89055959-11" debug>
+          <div>
+            <Header />
+            <div
+              className="container"
+              style={{ paddingTop: "50px", paddingBottom: "50px" }}
+            >
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route exact path="/account" component={Account} />
+                <Route exact path="/tracks" component={Dashboard} />
+                <Route exact path="/settings" component={Settings} />
+                <Route exact path="/docs/terms-and-conditions" component={Terms} />
+                <Route exact path="/docs/privacy-policy" component={PrivacyPolicy} />
+                <Route exact path="/artist/:userId" component={Artist} />
+                <Route exact path="/artist/:userId/:type" component={UserTracks} />
+                <Route exact path="/tracks/:type" component={GenericTracks} />
+                <Route exact path="/tracks/:type/:rating" component={GenericTracks} />
+                <Route exact path="/track/:trackId" component={TrackExpanded} />
+                <Route exact path="/upload/track" component={SurveyNew} />
+                <Route component={NotFound}/>
+              </Switch>
+            </div>
+            <div style={{ height: 100 }} />
+            <Footer />
           </div>
-          <div style={{ height: 100 }} />
-          <Footer />
-        </div>
+        </Analytics>
       </BrowserRouter>
     );
   }
