@@ -19,7 +19,7 @@ class Landing extends Component {
       default:
         return(
           <div style={{ textAlign: 'center' }}>
-            <div class="alert success add-bottom-space">
+            <div className="alert success add-bottom-space">
               <p>First time to BedroomBands? Sweet! Make sure you've read our <Link to="/docs/terms-and-conditions">T&Cs</Link> and <Link to="/docs/privacy-policy">Privacy Policy</Link> and agree to our use of delicious, delicious cookies.</p>
             </div>
             <img src="/bedroombands-landing.png"

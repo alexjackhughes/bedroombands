@@ -40,7 +40,7 @@ class Header extends Component {
           </li>,
           <li key="4">
             <Link to="/settings" className="right black-text">
-              My Profile
+              My Profiles
             </Link>
           </li>,
           <li key="5">
@@ -48,7 +48,7 @@ class Header extends Component {
               Tracks
             </Link>
           </li>,
-          <li key="7" className="right black-text">
+          <li key="6" className="right black-text">
             <a
               href="http://reddit.com/r/bedroombands"
               target="_blank"

@@ -13,6 +13,10 @@ class Settings extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      errorMessage: ""
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -88,11 +92,14 @@ class Settings extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log("submit");
-
     if (!this.state.username) {
       this.state.username = this.props.auth.username;
+    } else if(this.state.username.length > 15) {
+      this.setState({errorMessage: "Your username is too long!"});
+      return;
     }
+
+    this.state.username = this.state.username.toLowerCase().replace(/\s/g, '');
 
     if (!this.state.email) {
       this.state.email = this.props.auth.email;
@@ -100,18 +107,29 @@ class Settings extends Component {
 
     if (!this.state.blurb) {
       this.state.blurb = this.props.auth.blurb;
+    } else if(this.state.blurb.length > 320) {
+      this.setState({errorMessage: "Your 'About Me' is too long!"});
     }
 
     if (!this.state.genres) {
       this.state.genres = this.props.auth.genres;
+    } else if(this.state.genres.length > 4) {
+      this.setState({errorMessage: "You need to select less genres"});
+      return;
     }
 
     if (!this.state.exampleTrack) {
       this.state.exampleTrack = this.props.auth.exampleTrack;
+    } else if(!this.state.exampleTrack.includes('soundcloud')) {
+      this.setState({errorMessage: "You need to provide a valid SoundCloud URL of your track"});
+      return;
     }
 
     if (!this.state.instruments) {
       this.state.instruments = this.props.auth.instruments;
+    } else if(this.state.instruments.length > 4) {
+      this.setState({errorMessage: "You need to select less instruments"});
+      return;
     }
 
     if (!this.state.likedTracks) {
@@ -129,7 +147,7 @@ class Settings extends Component {
     });
 
     this.setState({ settingsSubmit: true });
-    window.location.reload();
+    //window.location.reload();
     //actions.submitUser(this.state, this.props.history);
   }
 
@@ -169,6 +187,7 @@ class Settings extends Component {
       this.props &&
         this.props.auth &&
         this.state &&
+        this.state.errorMessage &&
         this.state.settingsSubmit !== undefined
     ) {
       case null:
@@ -217,6 +236,17 @@ class Settings extends Component {
                   <i className="fas fa-heart btn-far" /> LIKES
                 </a>
               </div>
+
+              {
+                this.state.errorMessage !== "" ?
+                <div class="row">
+                  <div class="alert failure">
+                    <p>{this.state.errorMessage}</p>
+                  </div>
+                </div>
+                : <span />
+              }
+
               <form onSubmit={this.handleSubmit}>
                 <div>
                   <div className="row">
