@@ -26,8 +26,6 @@ import Footer from "./Footer";
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
-
-    //ReactGA.initialize('UA-89055959-11'); //Unique Google Analytics tracking number
   }
 
   render() {
