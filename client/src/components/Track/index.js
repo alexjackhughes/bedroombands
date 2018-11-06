@@ -211,6 +211,7 @@ class Track extends Component {
   }
 
   render() {
+
     switch (
       this.state &&
         this.state.track &&
@@ -223,9 +224,12 @@ class Track extends Component {
         return <span />;
 
       default:
-        console.log("preeprs", track);
         let artists = this.state.users;
         let track = this.props.track;
+        console.log("The track", track);
+        let trackDescription = this.props.track.description ? this.props.track.description.substring(0,60) + '...': "";
+
+        console.log(trackDescription);
         let trackUrl = `https://w.soundcloud.com/player/?url=${
           track.soundCloudUrl
         }&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
@@ -264,7 +268,8 @@ class Track extends Component {
 
                   <div className="track-bottom">
                     <div className="row profile-entry track-authors">
-                      <Link to={"/track/" + track._id}>Learn more</Link>
+                      <p className="profile-data">{trackDescription}</p>
+                      <Link to={"/track/" + track._id}>Read more</Link>
                     </div>
                     <div className="row rating-section">
                       {this.renderRating(track.currentRating)}

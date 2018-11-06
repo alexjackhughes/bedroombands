@@ -173,6 +173,7 @@ class SurveyForm extends Component {
                           component="input"
                           type="text"
                           className="input-data"
+                          placeholder="Must be a valid SoundCloud URL"
                         />
                       </div>
                     </div>

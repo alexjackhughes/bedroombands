@@ -40,7 +40,7 @@ class Header extends Component {
           </li>,
           <li key="4">
             <Link to="/settings" className="right black-text">
-              My Profiles
+              My Profile
             </Link>
           </li>,
           <li key="5">

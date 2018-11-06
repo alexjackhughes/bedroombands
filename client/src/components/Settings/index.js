@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import _ from "lodash";
 import axios from "axios";
 import gravatar from "gravatar";
@@ -309,6 +311,7 @@ class Settings extends Component {
                             onChange={this.handleExampleTrackChange}
                           />
                         </div>
+                        <p className="profile-label" style={{'font-style': 'italic', 'padding-bottom':'20px', 'padding-right':'20px'}}>The link must be a valid SoundCloud URL for the track to be visible.</p>
                       </div>
 
                       <div className="row profile-entry">
@@ -335,6 +338,9 @@ class Settings extends Component {
                         />
                       </div>
                     </div>
+                    <Link to="/upload/track">
+                      <i className="fas fa-plus-circle upload-track" />
+                    </Link>
                   </div>
                 </div>
 

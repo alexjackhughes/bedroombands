@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 import TrackList from "../TrackList";
 import Track from "../Track";
@@ -42,10 +43,14 @@ class UserTracks extends Component {
             <div className="row">
               <div className="centre col s8 offset-s2">
                 <h1 className="profile-title">{this.state.title} Tracks</h1>
+                <p>Ready to collaborate? You can upload a track <Link to="/upload/track">at any time</Link>!</p>
                 <div className="row">
                   <TrackList tracks={this.state.tracks} />
                 </div>
               </div>
+              <Link to="/upload/track">
+                <i className="fas fa-plus-circle upload-track" />
+              </Link>
             </div>
           );
     }

@@ -19,7 +19,7 @@ module.exports = app => {
   });
 
   // GET: Tracks from array
-  app.post("/api/tracks/array", async (req, res) => {
+  app.get("/api/tracks/array", async (req, res) => {
 
     let listOfIds = req.body.array;
     const tracks = await Track.find({_id:listOfIds});
@@ -114,6 +114,8 @@ module.exports = app => {
     if (!req.body.artists.includes(req.user._id)) {
       req.body.artists.push(req.user._id);
     }
+
+    console.log(req.body, 'does this include description');
 
     // Create the track model
     const track = new Track({

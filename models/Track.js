@@ -7,7 +7,7 @@ const trackSchema = new Schema({
   title: { type: String, default: "Song Track" },
   soundCloudUrl: String,
   type: { type: String, default: "progress" },
-  blurb: { type: String, default: "Can you sing with all the voices of the mountains, can you paint with all the colors of the wind?" },
+  description: { type: String, default: "Can you sing with all the voices of the mountains, can you paint with all the colors of the wind?" },
   artists: [String],
   ratings: [
     {

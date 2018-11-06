@@ -38,6 +38,7 @@ class Dashboard extends Component {
 
             <div className="col s8 main-track-section dashboard-mobile">
               <div className="row add-margin-mobile">
+                <h1 className="profile-title" style={{"text-align":"center"}}>All Tracks</h1>
                 <TrackList />
               </div>
               <Link to="/upload/track">

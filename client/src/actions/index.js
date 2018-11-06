@@ -35,7 +35,7 @@ export const submitSurvey = (values, history) => async dispatch => {
 };
 
 export const submitTrack = (values, history) => async dispatch => {
-  console.log("Track is being submitted");
+  console.log("Track is being submitted", values);
   const res = await axios.post("/api/track", values);
   history.push("/tracks");
   dispatch({ type: FETCH_USER, payload: res.data });
