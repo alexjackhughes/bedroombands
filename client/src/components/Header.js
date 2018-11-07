@@ -4,16 +4,15 @@ import { Link } from "react-router-dom";
 import Payments from "./Payments";
 
 class Header extends Component {
-
   constructor() {
     super();
     this.state = {
       mobileMenu: false
-    }
+    };
   }
 
   callMobileMenu() {
-    this.setState({mobileMenu: !this.state.mobileMenu});
+    this.setState({ mobileMenu: !this.state.mobileMenu });
     console.log("menu called", this.state.mobileMenu);
   }
 
@@ -62,76 +61,80 @@ class Header extends Component {
   }
 
   render() {
-
-
     return (
       <span>
-      <nav style={{ height: "80px" }}>
-        <div className="nav-wrapper grey lighten-5 z-depth-0">
-          <Link
-            to={this.props.auth ? "/tracks" : "/"}
-            className="left brand-logo"
-          >
-            <img
-              src="/bedroom-bands-logo.png"
-              alt="Bedroom Bands logo"
-              style={{ height: "85px", width: "300px" }}
-            />
-          </Link>
-          {
-            this.props.auth ?
-            <div className="menu-section right">
-              <span
-                onClick={() => this.callMobileMenu()}
-                className="fas fa-bars menu-icon"
+        <nav style={{ height: "80px" }}>
+          <div className="nav-wrapper grey lighten-5 z-depth-0">
+            <Link
+              to={this.props.auth ? "/tracks" : "/"}
+              className="left brand-logo"
+            >
+              <img
+                src="/bedroom-bands-logo.png"
+                alt="Bedroom Bands logo"
+                style={{ height: "85px", width: "300px" }}
               />
-            </div>
-            : <span />
-          }
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
-            {this.renderContent()}
-          </ul>
-        </div>
-      </nav>
-      <div className="row">
-        {
-          this.state.mobileMenu ?
-          <div className="col s8 side-menu">
-            <div className="row">
-              <Link to="/tracks" className="right mobile-menu-text">
-                Tracks
-              </Link>
-            </div>
-            <div className="row">
-              <Link to="/settings" className="right mobile-menu-text">
-                My Profile
-              </Link>
-            </div>
-            <div className="row">
-              <Link to={"/artist/" + this.props.auth._id + "/liked"} className="right mobile-menu-text">
-                Liked Tracks
-              </Link>
-            </div>
-            <div className="row">
-              <Link to={"/artist/" + this.props.auth._id + "/tracks"} className="right mobile-menu-text">
-                My Tracks
-              </Link>
-            </div>
-            <div className="row">
-              <Link to="/upload/track" className="right mobile-menu-text">
-                Add Track
-              </Link>
-            </div>
-            <div className="row">
-              <a href="/api/logout" className="right mobile-menu-text">
-                Logout
-              </a>
-            </div>
+            </Link>
+            {this.props.auth ? (
+              <div className="menu-section right">
+                <span
+                  onClick={() => this.callMobileMenu()}
+                  className="fas fa-bars menu-icon"
+                />
+              </div>
+            ) : (
+              <span />
+            )}
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              {this.renderContent()}
+            </ul>
           </div>
-          : <span className="desktop-hide" />
-        }
-    </div>
-  </span>
+        </nav>
+        <div className="row">
+          {this.state.mobileMenu ? (
+            <div className="col s8 side-menu">
+              <div className="row">
+                <Link to="/tracks" className="right mobile-menu-text">
+                  Tracks
+                </Link>
+              </div>
+              <div className="row">
+                <Link to="/settings" className="right mobile-menu-text">
+                  My Profile
+                </Link>
+              </div>
+              <div className="row">
+                <Link
+                  to={"/artist/" + this.props.auth._id + "/liked"}
+                  className="right mobile-menu-text"
+                >
+                  Liked Tracks
+                </Link>
+              </div>
+              <div className="row">
+                <Link
+                  to={"/artist/" + this.props.auth._id + "/tracks"}
+                  className="right mobile-menu-text"
+                >
+                  My Tracks
+                </Link>
+              </div>
+              <div className="row">
+                <Link to="/upload/track" className="right mobile-menu-text">
+                  Add Track
+                </Link>
+              </div>
+              <div className="row">
+                <a href="/api/logout" className="right mobile-menu-text">
+                  Logout
+                </a>
+              </div>
+            </div>
+          ) : (
+            <span className="desktop-hide" />
+          )}
+        </div>
+      </span>
     );
   }
 }

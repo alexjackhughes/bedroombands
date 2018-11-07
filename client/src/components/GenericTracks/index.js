@@ -44,7 +44,7 @@ class GenericTracks extends Component {
       return (
         <div className="row">
           <div className="centre col s8 offset-s2 track-mobile">
-            <h1 className="profile-title">{this.state.title} Tracks</h1>
+            <h1 className="page-title">{this.state.title} Tracks</h1>
             {this.state.title === "Solo" ? (
               <p>
                 All these tracks are looking for collaborators - why not "read
@@ -52,7 +52,7 @@ class GenericTracks extends Component {
               </p>
             ) : null}
             <p>
-              Ready to collaborate? You can upload a track{" "}
+              Ready to collaborate? You can upload a track 
               <Link to="/upload/track">at any time</Link>!
             </p>
             <div className="row">
