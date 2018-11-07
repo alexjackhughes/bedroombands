@@ -49,11 +49,8 @@ class Artist extends Component {
         let trackUrl = `https://w.soundcloud.com/player/?url=${
           artist.exampleTrack
         }&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
-        let gravatarUrl = gravatar.url(artist.email, {
-          s: "400",
-          r: "pg",
-          d: "404"
-        });
+        let gravatarUrl = gravatar.url(artist.email, { s: "400" });
+        
         return (
           <div className="row" style={{ textAlign: "center" }}>
             <div className="col s6 offset-s3 form-mobile">

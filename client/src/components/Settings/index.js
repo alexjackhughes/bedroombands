@@ -201,7 +201,7 @@ class Settings extends Component {
       default:
         console.log("auth", this.props.auth);
         let artist = this.props.auth;
-        let gravatarUrl = gravatar.url(artist.email, { s: "400" }); // Might need to remove options
+        let gravatarUrl = gravatar.url(artist.email, { s: "400" });
         return (
           <div className="row" style={{ textAlign: "center" }}>
             <div className="row centre">

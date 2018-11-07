@@ -37,6 +37,12 @@ class Sidebar extends Component {
 
             <hr className="category-line" />
 
+            <Link to={"/tracks/solo"} style={{ color: "#2B3854" }}>
+              <p class="category-item">
+                <i class="fas fa-headphones category-icon solo-icon" />
+                <span class="category-text">Need Artists</span>
+              </p>
+            </Link>
             <Link to={"/tracks/progress"} style={{ color: "#2B3854" }}>
               <p className="category-item">
                 <i className="fas fa-tasks category-icon collab-icon" />
@@ -49,58 +55,60 @@ class Sidebar extends Component {
                 <span className="category-text">Complete</span>
               </p>
             </Link>
-
-            <hr className="category-line" />
-
-            <Link to={"/tracks/rating/5"} style={{ color: "#2B3854" }}>
-              <p className="category-item">
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-              </p>
-            </Link>
-
-            <Link to={"/tracks/rating/4"} style={{ color: "#2B3854" }}>
-              <p className="category-item">
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-              </p>
-            </Link>
-
-            <Link to={"/tracks/rating/3"} style={{ color: "#2B3854" }}>
-              <p className="category-item">
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-              </p>
-            </Link>
-
-            <Link to={"/tracks/rating/2"} style={{ color: "#2B3854" }}>
-              <p className="category-item">
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-              </p>
-            </Link>
-
-            <Link to={"/tracks/rating/1"} style={{ color: "#2B3854" }}>
-              <p className="category-item">
-                <i className="fas fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-                <i className="far fa-star category-icon rating-icon" />
-              </p>
-            </Link>
+            {
+              //
+              // <hr className="category-line" />
+              //
+              // <Link to={"/tracks/rating/5"} style={{ color: "#2B3854" }}>
+              //   <p className="category-item">
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //   </p>
+              // </Link>
+              //
+              // <Link to={"/tracks/rating/4"} style={{ color: "#2B3854" }}>
+              //   <p className="category-item">
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //   </p>
+              // </Link>
+              //
+              // <Link to={"/tracks/rating/3"} style={{ color: "#2B3854" }}>
+              //   <p className="category-item">
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //   </p>
+              // </Link>
+              //
+              // <Link to={"/tracks/rating/2"} style={{ color: "#2B3854" }}>
+              //   <p className="category-item">
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //   </p>
+              // </Link>
+              //
+              // <Link to={"/tracks/rating/1"} style={{ color: "#2B3854" }}>
+              //   <p className="category-item">
+              //     <i className="fas fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //     <i className="far fa-star category-icon rating-icon" />
+              //   </p>
+              // </Link>
+            }
           </div>
         );
     }

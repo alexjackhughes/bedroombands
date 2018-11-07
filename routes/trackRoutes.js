@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 const requireTrack = require("../middlewares/requireTrack");
-var _ = require('underscore');
+var _ = require("underscore");
 
 const Track = mongoose.model("tracks");
 const User = mongoose.model("users");
@@ -19,10 +19,9 @@ module.exports = app => {
   });
 
   // GET: Tracks from array
-  app.get("/api/tracks/array", async (req, res) => {
-
+  app.post("/api/tracks/array", async (req, res) => {
     let listOfIds = req.body.array;
-    const tracks = await Track.find({_id:listOfIds});
+    const tracks = await Track.find({ _id: listOfIds });
 
     res.send(tracks);
   });
@@ -115,7 +114,7 @@ module.exports = app => {
       req.body.artists.push(req.user._id);
     }
 
-    console.log(req.body, 'does this include description');
+    console.log(req.body, "does this include description");
 
     // Create the track model
     const track = new Track({
@@ -123,7 +122,7 @@ module.exports = app => {
       soundCloudUrl: req.body.soundCloudUrl,
       description: req.body.description,
       artists: req.body.artists, // Need to add originator
-      ratings: [{id: req.user._id, rating: 5}],
+      ratings: [{ id: req.user._id, rating: 5 }],
       currentRating: 5,
       genres: req.body.genres,
       instruments: req.body.instruments
@@ -163,7 +162,6 @@ module.exports = app => {
 
   // DELETE: Delete one from my tracks
   app.delete("/api/my-tracks/:trackId", requireLogin, async (req, res) => {
-
     let index = req.user.myTracks.indexOf(req.params.trackId);
 
     if (index > -1) {
@@ -182,60 +180,65 @@ module.exports = app => {
   // 3. calculate the new current rating for track
   //
   // NOT WORKING
-  app.put("/api/rate-track/:trackId/rating/:rating", requireLogin, async (req,res) => {
+  app.put(
+    "/api/rate-track/:trackId/rating/:rating",
+    requireLogin,
+    async (req, res) => {
+      Track.findById(req.params.trackId)
+        .then(track => {
+          if (!track)
+            return res.status(404).send({ message: "Track not found" });
 
-    Track.findById(req.params.trackId)
-      .then(track => {
-        if (!track) return res.status(404).send({ message: "Track not found" });
+          let currentUserRating = -1;
+          let ratingIndex;
 
-        let currentUserRating = -1;
-        let ratingIndex;
+          // Check each rating to see if it matches user
+          track.ratings.map((rating, index) => {
+            if (rating.id == req.user._id) {
+              currentUserRating = rating;
+              ratingIndex = index;
+            }
+          });
 
-        // Check each rating to see if it matches user
-        track.ratings.map((rating, index) => {
-          if (rating.id == req.user._id) {
-            currentUserRating = rating;
-            ratingIndex = index;
+          // User has never rated before:
+          if (currentUserRating == -1) {
+            track.ratings.push({ id: req.user._id, rating: req.params.rating });
+
+            // User has rated, so replace old rating
+          } else {
+            track.ratings[ratingIndex] = {
+              id: req.user._id,
+              rating: req.params.rating
+            };
           }
+
+          // Finally re-calculate the current rating
+          let sum = 0;
+          track.ratings.map(rating => {
+            sum += parseInt(rating.rating, 10);
+          });
+
+          track.currentRating = Math.round(sum / track.ratings.length);
+          res.send(track);
+        })
+        .catch(() => {
+          return res.status(404).send({ message: "Please try again" });
         });
-
-        // User has never rated before:
-        if(currentUserRating == -1) {
-          track.ratings.push({id: req.user._id, rating: req.params.rating});
-
-        // User has rated, so replace old rating
-        } else {
-          track.ratings[ratingIndex] = {id: req.user._id, rating: req.params.rating};
-        }
-
-        // Finally re-calculate the current rating
-        let sum = 0;
-        track.ratings.map((rating) => {
-          sum += parseInt(rating.rating, 10);
-        });
-
-        track.currentRating = Math.round( sum / track.ratings.length );
-        res.send(track);
-      })
-      .catch(() => {
-        return res.status(404).send({ message: "Please try again" });
-      });
 
       res.send(track);
-  });
+    }
+  );
 
   // UPDATE: Add one to my liked tracks
   app.put("/api/liked-tracks/:trackId", requireLogin, async (req, res) => {
-
     // if track is already in list, remove it
-    if(req.user.likedTracks.includes(req.params.trackId)) {
-
+    if (req.user.likedTracks.includes(req.params.trackId)) {
       let index = req.user.likedTracks.indexOf(req.params.trackId);
       if (index > -1) {
         req.user.likedTracks.splice(index, 1);
       }
 
-    // Otherwise, add it to list
+      // Otherwise, add it to list
     } else {
       req.user.likedTracks.push(req.params.trackId);
     }
@@ -288,8 +291,7 @@ module.exports = app => {
     requireLogin,
     requireTrack,
     async (req, res) => {
-
-      console.log('got to here');
+      console.log("got to here");
       Track.findByIdAndRemove(req.params.trackId)
         .then(track => {
           res.send({ message: "The Track was deleted successfully" });

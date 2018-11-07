@@ -326,9 +326,11 @@ class TrackExpanded extends Component {
                     {this.renderTags(track.genres)}
                     {this.renderTags(track.instruments)}
                   </div>
-                  <div className="row rating-section">
-                    {this.renderRating(track.currentRating)}
-                  </div>
+                  {
+                    // <div className="row rating-section">
+                    //   {this.renderRating(track.currentRating)}
+                    // </div>
+                  }
                   {this.renderEditingTools()}
                 </div>
               </div>

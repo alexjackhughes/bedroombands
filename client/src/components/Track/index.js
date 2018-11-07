@@ -211,7 +211,6 @@ class Track extends Component {
   }
 
   render() {
-
     switch (
       this.state &&
         this.state.track &&
@@ -227,7 +226,9 @@ class Track extends Component {
         let artists = this.state.users;
         let track = this.props.track;
         console.log("The track", track);
-        let trackDescription = this.props.track.description ? this.props.track.description.substring(0,60) + '...': "";
+        let trackDescription = this.props.track.description
+          ? this.props.track.description.substring(0, 60) + "..."
+          : "";
 
         console.log(trackDescription);
         let trackUrl = `https://w.soundcloud.com/player/?url=${
@@ -271,9 +272,11 @@ class Track extends Component {
                       <p className="profile-data">{trackDescription}</p>
                       <Link to={"/track/" + track._id}>Read more</Link>
                     </div>
-                    <div className="row rating-section">
-                      {this.renderRating(track.currentRating)}
-                    </div>
+                    {
+                      // <div className="row rating-section">
+                      //   {this.renderRating(track.currentRating)}
+                      // </div>
+                    }
                   </div>
                 </div>
 
