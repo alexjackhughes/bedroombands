@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import ProfileDetail from "./profileDetail";
+
 import _ from "lodash";
 import axios from "axios";
 import gravatar from "gravatar";
@@ -17,7 +19,7 @@ class Settings extends Component {
 
     this.state = {
       errorMessage: ""
-    }
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -43,8 +45,7 @@ class Settings extends Component {
    */
   copyShareLink() {
     let copyText = document.createElement("textarea");
-    copyText.value =
-      "https://bedroombands.com/" + this.props.auth.id;
+    copyText.value = "https://bedroombands.com/" + this.props.auth.id;
     copyText.setAttribute("readonly", "");
     copyText.style = { position: "absolute", left: "-9999px" };
 
@@ -96,12 +97,12 @@ class Settings extends Component {
 
     if (!this.state.username) {
       this.state.username = this.props.auth.username;
-    } else if(this.state.username.length > 15) {
-      this.setState({errorMessage: "Your username is too long!"});
+    } else if (this.state.username.length > 15) {
+      this.setState({ errorMessage: "Your username is too long!" });
       return;
     }
 
-    this.state.username = this.state.username.toLowerCase().replace(/\s/g, '');
+    this.state.username = this.state.username.toLowerCase().replace(/\s/g, "");
 
     if (!this.state.email) {
       this.state.email = this.props.auth.email;
@@ -109,28 +110,30 @@ class Settings extends Component {
 
     if (!this.state.blurb) {
       this.state.blurb = this.props.auth.blurb;
-    } else if(this.state.blurb.length > 320) {
-      this.setState({errorMessage: "Your 'About Me' is too long!"});
+    } else if (this.state.blurb.length > 320) {
+      this.setState({ errorMessage: "Your 'About Me' is too long!" });
     }
 
     if (!this.state.genres) {
       this.state.genres = this.props.auth.genres;
-    } else if(this.state.genres.length > 4) {
-      this.setState({errorMessage: "You need to select less genres"});
+    } else if (this.state.genres.length > 4) {
+      this.setState({ errorMessage: "You need to select less genres" });
       return;
     }
 
     if (!this.state.exampleTrack) {
       this.state.exampleTrack = this.props.auth.exampleTrack;
-    } else if(!this.state.exampleTrack.includes('soundcloud')) {
-      this.setState({errorMessage: "You need to provide a valid SoundCloud URL of your track"});
+    } else if (!this.state.exampleTrack.includes("soundcloud")) {
+      this.setState({
+        errorMessage: "You need to provide a valid SoundCloud URL of your track"
+      });
       return;
     }
 
     if (!this.state.instruments) {
       this.state.instruments = this.props.auth.instruments;
-    } else if(this.state.instruments.length > 4) {
-      this.setState({errorMessage: "You need to select less instruments"});
+    } else if (this.state.instruments.length > 4) {
+      this.setState({ errorMessage: "You need to select less instruments" });
       return;
     }
 
@@ -149,6 +152,8 @@ class Settings extends Component {
     });
 
     this.setState({ settingsSubmit: true });
+
+    // Using Redux
     //window.location.reload();
     //actions.submitUser(this.state, this.props.history);
   }
@@ -199,56 +204,42 @@ class Settings extends Component {
         return <Redirect to="/" />;
 
       default:
-        console.log("auth", this.props.auth);
+        console.log("This user:", this.props.auth);
         let artist = this.props.auth;
         let gravatarUrl = gravatar.url(artist.email, { s: "400" });
         return (
           <div className="row" style={{ textAlign: "center" }}>
-            <div className="row centre">
-              {artist.username === "" ? (
-                <div class="row">
-                  <div class="alert success">
-                    <p>
-                      Thanks for joining! Make sure to set your username and
-                      email address.
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <span />
-              )}
-            </div>
             <div className="col s6 offset-s3 form-mobile">
-              <div className="row">
-                <img className="profile-image" src={"https:" + gravatarUrl} />
-                <p className="gravatar-text">You can change your profile image at any time using <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> - just sign in with the same email you used to sign up to BedroomBands.</p>
-                <h2 className="profile-title">{artist.username}</h2>
-              </div>
-
               <div className="row centre">
-                <a
-                  href={"/artist/" + this.props.auth._id + "/tracks"}
-                  className="blue lighten-2 waves-effect waves-light btn-large"
-                >
-                  <i className="fas fa-play btn-far" /> TRACKS
-                </a>
-                <a
-                  href={"/artist/" + this.props.auth._id + "/likes"}
-                  className="blue lighten-2 waves-effect waves-light btn-large"
-                >
-                  <i className="fas fa-heart btn-far" /> LIKES
-                </a>
+                {artist.username === "" ? (
+                  <div class="row">
+                    <div class="alert success">
+                      <p>
+                        Thanks for joining! Make sure to set your username and
+                        email address.
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <span />
+                )}
               </div>
 
-              {
-                this.state.errorMessage !== "" ?
+              {this.state.errorMessage !== "" ? (
                 <div class="row">
                   <div class="alert failure">
                     <p>{this.state.errorMessage}</p>
                   </div>
                 </div>
-                : <span />
-              }
+              ) : (
+                <span />
+              )}
+
+              <ProfileDetail
+                id={this.props.auth._id}
+                username={artist.username}
+                gravatarUrl={gravatarUrl}
+              />
 
               <form onSubmit={this.handleSubmit}>
                 <div>
@@ -312,7 +303,18 @@ class Settings extends Component {
                             onChange={this.handleExampleTrackChange}
                           />
                         </div>
-                        <p className="profile-label" style={{'font-style': 'italic', 'padding-bottom':'20px', 'padding-right':'20px'}}>The link must be a valid SoundCloud URL for the track to be visible.</p>
+                        <p
+                          className="profile-label"
+                          style={{
+                            fontStyle: "italic",
+                            fontSize: "13px",
+                            paddingBottom: "20px",
+                            paddingRight: "20px"
+                          }}
+                        >
+                          The link must be a valid SoundCloud URL for the track
+                          to be visible on your profile.
+                        </p>
                       </div>
 
                       <div className="row profile-entry">
@@ -368,7 +370,6 @@ class Settings extends Component {
     }
   }
 
-  /* Main Render Function */
   render() {
     return <div>{this.renderUserForm()}</div>;
   }

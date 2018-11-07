@@ -8,19 +8,6 @@ import Sidebar from "./Sidebar";
 import SurveyList from "./surveys/SurveyList";
 import TrackList from "./TrackList";
 
-import "./Dashboard.css";
-
-/*
-<div>
-  <TrackList />
-  <div classNameName="fixed-action-btn">
-    <Link to="/tracks/new">
-      <i classNameName="fas fa-plus-circle upload-track"></i>
-    </Link>
-  </div>
-</div>
- */
-
 class Dashboard extends Component {
   render() {
     switch (this.props.auth) {
