@@ -58,7 +58,7 @@ class Artist extends Component {
           <div className="row" style={{ textAlign: "center" }}>
             <div className="col s6 offset-s3 form-mobile">
               <div className="row">
-                <img className="profile-image" src={gravatarUrl} />
+                <img className="profile-image" src={"https:" + gravatarUrl} />
                 <h2 className="profile-title">{artist.username}</h2>
               </div>
 

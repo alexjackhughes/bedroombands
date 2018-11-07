@@ -792,3 +792,8 @@ h6 {
   margin-bottom: 15px;
   padding-bottom: 40px;
 }
+
+.gravatar-text {
+  font-style: italic;
+  text-align: center;
+}

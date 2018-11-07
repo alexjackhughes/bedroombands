@@ -220,7 +220,8 @@ class Settings extends Component {
             </div>
             <div className="col s6 offset-s3 form-mobile">
               <div className="row">
-                <img className="profile-image" src={"http:" + gravatarUrl} />
+                <img className="profile-image" src={"https:" + gravatarUrl} />
+                <p className="gravatar-text">You can change your profile image at any time using <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> - just sign in with the same email you used to sign up to BedroomBands.</p>
                 <h2 className="profile-title">{artist.username}</h2>
               </div>
 

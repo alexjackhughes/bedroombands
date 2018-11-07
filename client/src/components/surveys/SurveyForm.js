@@ -154,7 +154,7 @@ class SurveyForm extends Component {
                 <div className="row">
                   <div className="highlight">
                     <div className="row profile-entry">
-                      <p className="profile-label">Titles</p>
+                      <p className="profile-label">Title</p>
                       <div className="profile-data">
                         <Field
                           name="title"
