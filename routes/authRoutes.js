@@ -30,13 +30,30 @@ module.exports = app => {
 
   //UPDATE one User
   app.put("/api/current_user", requireLogin, async (req, res) => {
-    console.log("Request:");
-    console.log(req.body);
 
     // Make sure request isn't empty
     if (!req.body) {
       return res.status(404).send({
         message: "You need to provide values!"
+      });
+    }
+
+    const checkEmail = await User.find({
+      email: req.body.email
+    }).then((user) => {
+      if(user) {
+        return true;
+      }
+      return false;
+    })
+
+    // if the email is the default, or has already been set
+    if(req.body.email == "example@bedroombands.com" || req.body.email === req.user.email) {
+
+    // if email already exists, throw an error
+    } else if (checkEmail) {
+      return res.status(404).send({
+        message: "This email is already in use!"
       });
     }
 

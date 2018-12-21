@@ -197,9 +197,16 @@ class Settings extends Component {
       this.state.myTracks = this.props.auth.myTracks;
     }
 
-    axios.put("/api/current_user", this.state).then(data => {
+    axios.put("/api/current_user", this.state)
+    .then(data => {
       console.log("user api was updated", data);
       window.location.reload();
+    })
+    .catch((error) => {
+      console.log("error", error);
+      this.setState({
+        errorMessage: "This email is already in use!"
+      });
     });
   }
 
@@ -288,8 +295,7 @@ class Settings extends Component {
                   <div className="row">
                     <div className="alert success">
                       <p>
-                        Thanks for joining! Make sure to set your username and
-                        email address.
+                        Thanks for joining! Make sure to set your details below :)
                       </p>
                     </div>
                   </div>
@@ -297,17 +303,6 @@ class Settings extends Component {
                   <span />
                 )}
               </div>
-
-              {/* Displays Error Message */}
-              {this.state.errorMessage !== "" ? (
-                <div className="row">
-                  <div className="alert failure">
-                    <p>{this.state.errorMessage}</p>
-                  </div>
-                </div>
-              ) : (
-                <span />
-              )}
 
               <ProfileDetail
                 id={this.props.auth._id}
@@ -459,6 +454,17 @@ class Settings extends Component {
                   </button>
                 </div>
               </form>
+              {/* Displays Error Message */}
+              {this.state.errorMessage !== "" ? (
+                <div className="row">
+                  <div className="alert failure">
+                    <p>{this.state.errorMessage}</p>
+                  </div>
+                </div>
+              ) : (
+                <span />
+              )}
+
               <Link to="/upload/track">
                 <i className="fas fa-plus-circle upload-track" />
               </Link>
