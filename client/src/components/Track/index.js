@@ -25,7 +25,6 @@ class Track extends Component {
         })
         .then(data => {
           this.setState({ users: users });
-          console.log("users", users);
         });
     });
   }
@@ -33,7 +32,6 @@ class Track extends Component {
   // Rating track - need to make api call
   rateTrack(e, rating) {
     let id = this.props.track._id;
-    console.log("rating", rating);
 
     axios
       .put("/api/rate-track/" + id + "/rating/" + rating)
@@ -137,7 +135,6 @@ class Track extends Component {
 
   renderLikeButton() {
     let id = this.props.track._id;
-    console.log("true", this.props.auth.likedTracks.indexOf(id) > -1);
     if (this.props.auth.likedTracks.indexOf(id) > -1) {
       return (
         <a
@@ -225,12 +222,10 @@ class Track extends Component {
       default:
         let artists = this.state.users;
         let track = this.props.track;
-        console.log("The track", track);
         let trackDescription = this.props.track.description
           ? this.props.track.description.substring(0, 60) + "..."
           : "";
 
-        console.log(trackDescription);
         let trackUrl = `https://w.soundcloud.com/player/?url=${
           track.soundCloudUrl
         }&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;

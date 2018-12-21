@@ -7,20 +7,29 @@ const Track = mongoose.model("tracks");
 const User = mongoose.model("users");
 
 module.exports = app => {
-  // GET: One Track by Id
-  app.get("/api/tracks", (req, res) => {
+  // GET: All Tracks
+  app.get("/api/tracks/:limit", (req, res) => {
+    if (req.params.limit <= 10) {
+      req.params.limit = 10;
+    }
+
+    let limit = parseInt(req.params.limit);
+
     Track.find()
+      .limit(limit)
+      .sort("-createdOn")
       .then(tracks => {
         res.send(tracks);
       })
       .catch(err => {
-        res.status(500).send({ message: "Tracks not found!" });
+        res.status(500).send({ err, message: "Tracks not found!" });
       });
   });
 
   // GET: Tracks from array
   app.post("/api/tracks/array", async (req, res) => {
     let listOfIds = req.body.array;
+
     const tracks = await Track.find({ _id: listOfIds });
 
     res.send(tracks);
@@ -110,11 +119,7 @@ module.exports = app => {
       });
     }
 
-    if (!req.body.artists.includes(req.user._id)) {
-      req.body.artists.push(req.user._id);
-    }
-
-    console.log(req.body, "does this include description");
+    console.log(req.body.artists);
 
     // Create the track model
     const track = new Track({

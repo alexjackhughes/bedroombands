@@ -22,7 +22,7 @@
     "react-router-dom": "^4.3.1",
     "react-router-ga": "^1.0.0",
     "react-scripts": "^1.1.4",
-    "react-select": "^1.2.1",
+    "react-select": "^2.1.1",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",

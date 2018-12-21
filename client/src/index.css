@@ -1,5 +1,9 @@
 /* Mobile */
 @media only screen and (max-width: 600px) {
+  .container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
   /* .container {
     margin: 0 auto !important;
     max-width: none !important;
@@ -802,4 +806,26 @@ h6 {
   text-align: center;
   font-weight: bold;
   font-size: 48px !important;
+}
+
+.valid-input {
+  font-size: 14px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  color: #eb3a4b;
+  margin-left: 20px;
+}
+
+.behind-button {
+  z-index: 0;
+}
+
+.input-field {
+  margin-left: 30px !important;
+  margin-right: 30px !important;
+  line-height: 30px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
 }

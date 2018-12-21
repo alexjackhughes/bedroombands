@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Select from "react-select";
 
 import ProfileDetail from "./profileDetail";
 
@@ -18,7 +19,13 @@ class Settings extends Component {
     super(props);
 
     this.state = {
-      errorMessage: ""
+      errorMessage: "",
+      usernameValid: true,
+      blurbValid: true,
+      emailValid: true,
+      soundcloudUrlValid: true,
+      genresValid: true,
+      instrumentsValid: true
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,11 +36,12 @@ class Settings extends Component {
     this.handleExampleTrackChange = this.handleExampleTrackChange.bind(this);
     this.handleGenresChange = this.handleGenresChange.bind(this);
     this.handleInstrumentsChange = this.handleInstrumentsChange.bind(this);
+    this.setUserDefaults = this.setUserDefaults.bind(this);
+
+    this.submitForm = this.submitForm.bind(this);
   }
 
   componentDidMount() {
-    console.log("props", this.props);
-
     this.setState({
       settingsSubmit: false
     });
@@ -63,46 +71,81 @@ class Settings extends Component {
       .toLowerCase()
       .replace(/[^A-Z0-9]/gi, "");
 
-    this.setState({ username: event.target.value });
+    if (event.target.value.length > 21) {
+      this.setState({ usernameValid: false });
+    } else {
+      this.setState({ usernameValid: true, username: event.target.value });
+    }
   }
 
   handleBlurbChange(event) {
-    this.setState({ blurb: event.target.value });
+    if (event.target.value.length > 121) {
+      this.setState({ blurbValid: false });
+    } else {
+      this.setState({ blurbValid: true, blurb: event.target.value });
+    }
   }
 
   handleEmailChange(event) {
-    this.setState({ email: event.target.value });
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let email = String(event.target.value).toLowerCase();
+
+    if (!re.test(email)) {
+      this.setState({ emailValid: false });
+      console.log("email", email);
+    } else {
+      this.setState({ emailValid: true });
+    }
+
+    this.setState({ email });
   }
 
   handleExampleTrackChange(event) {
+    let exampleTrack = event.target.value;
+    let re = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
+
+    if (!exampleTrack.match(re) || !exampleTrack.match(re)[2]) {
+      this.setState({ soundcloudUrlValid: false });
+    } else {
+      this.setState({ soundcloudUrlValid: true });
+    }
+
     this.setState({ exampleTrack: event.target.value });
   }
 
   handleGenresChange(values) {
+    if (values.length > 5) {
+      this.setState({ genresValid: false });
+    } else {
+      this.setState({ genresValid: true });
+    }
+
     this.setState({ genres: values });
   }
 
   handleInstrumentsChange(values) {
+    if (values.length > 5) {
+      this.setState({ instrumentsValid: false });
+    } else {
+      this.setState({ instrumentsValid: true });
+    }
+
     this.setState({ instruments: values });
   }
 
-  /*
-  Could have very simply have some error tracking here
-  by saving the state to true of an error message
-  and then also setting it to a message like "Username is too long"
-  and then returning null;
-   */
   handleSubmit(event) {
     event.preventDefault();
 
-    if (!this.state.username) {
+    if (this.state.username) {
+      this.state.username = this.state.username
+        .toLowerCase()
+        .replace(/\s/g, "");
+    } else if (!this.state.username) {
       this.state.username = this.props.auth.username;
     } else if (this.state.username.length > 15) {
       this.setState({ errorMessage: "Your username is too long!" });
       return;
     }
-
-    this.state.username = this.state.username.toLowerCase().replace(/\s/g, "");
 
     if (!this.state.email) {
       this.state.email = this.props.auth.email;
@@ -112,13 +155,18 @@ class Settings extends Component {
       this.state.blurb = this.props.auth.blurb;
     } else if (this.state.blurb.length > 320) {
       this.setState({ errorMessage: "Your 'About Me' is too long!" });
+      return;
     }
 
     if (!this.state.genres) {
       this.state.genres = this.props.auth.genres;
-    } else if (this.state.genres.length > 4) {
+    } else if (this.state.genres.length > 5) {
       this.setState({ errorMessage: "You need to select less genres" });
       return;
+    } else {
+      this.state.genres = this.state.genres.map(item => {
+        return item.value;
+      });
     }
 
     if (!this.state.exampleTrack) {
@@ -132,9 +180,13 @@ class Settings extends Component {
 
     if (!this.state.instruments) {
       this.state.instruments = this.props.auth.instruments;
-    } else if (this.state.instruments.length > 4) {
+    } else if (this.state.instruments.length > 5) {
       this.setState({ errorMessage: "You need to select less instruments" });
       return;
+    } else {
+      this.state.instruments = this.state.instruments.map(item => {
+        return item.value;
+      });
     }
 
     if (!this.state.likedTracks) {
@@ -145,20 +197,25 @@ class Settings extends Component {
       this.state.myTracks = this.props.auth.myTracks;
     }
 
-    /* Could call the api directly */
-    console.log(this.state);
     axios.put("/api/current_user", this.state).then(data => {
-      console.log("user api was updated");
+      console.log("user api was updated", data);
+      window.location.reload();
     });
-
-    this.setState({ settingsSubmit: true });
-
-    // Using Redux
-    //window.location.reload();
-    //actions.submitUser(this.state, this.props.history);
   }
 
   /* Render Components */
+
+  setUserDefaults(genres, instruments) {
+    this.setState({
+      genres,
+      instruments
+    });
+  }
+
+  submitForm(e) {
+    e.preventDefault();
+    console.log("Form Sent!", this.state);
+  }
 
   renderUserForm() {
     const genres = [
@@ -193,7 +250,9 @@ class Settings extends Component {
     switch (
       this.props &&
         this.props.auth &&
+        this.props.auth.genres &&
         this.state &&
+        this.state.genres &&
         this.state.errorMessage &&
         this.state.settingsSubmit !== undefined
     ) {
@@ -204,16 +263,30 @@ class Settings extends Component {
         return <Redirect to="/" />;
 
       default:
-        console.log("This user:", this.props.auth);
         let artist = this.props.auth;
         let gravatarUrl = gravatar.url(artist.email, { s: "400" });
+
+        let genreDefaultValues = [];
+        this.props.auth.genres.map(genre => {
+          genreDefaultValues.push({ label: genre, value: genre });
+        });
+
+        let instrumentDefaultValues = [];
+        this.props.auth.instruments.map(instrument => {
+          instrumentDefaultValues.push({
+            label: instrument,
+            value: instrument
+          });
+        });
+
         return (
           <div className="row" style={{ textAlign: "center" }}>
             <div className="col s6 offset-s3 form-mobile">
               <div className="row centre">
+                {/* New user walkthrough */}
                 {artist.username === "" ? (
-                  <div class="row">
-                    <div class="alert success">
+                  <div className="row">
+                    <div className="alert success">
                       <p>
                         Thanks for joining! Make sure to set your username and
                         email address.
@@ -225,9 +298,10 @@ class Settings extends Component {
                 )}
               </div>
 
+              {/* Displays Error Message */}
               {this.state.errorMessage !== "" ? (
-                <div class="row">
-                  <div class="alert failure">
+                <div className="row">
+                  <div className="alert failure">
                     <p>{this.state.errorMessage}</p>
                   </div>
                 </div>
@@ -259,6 +333,13 @@ class Settings extends Component {
                           />
                         </div>
                       </div>
+                      {this.state.usernameValid ? (
+                        ""
+                      ) : (
+                        <p className="valid-input">
+                          Usernames must be less than 20 characters
+                        </p>
+                      )}
 
                       <div className="row profile-entry">
                         <p className="profile-label">About Me</p>
@@ -268,12 +349,20 @@ class Settings extends Component {
                             className="input-data"
                             component="input"
                             type="text"
+                            contenteditable="true"
                             value={this.props.auth.blurb}
                             placeholder={this.props.auth.blurb}
                             onChange={this.handleBlurbChange}
                           />
                         </div>
                       </div>
+                      {this.state.blurbValid ? (
+                        ""
+                      ) : (
+                        <p className="valid-input">
+                          About Me must be less than 120 characters
+                        </p>
+                      )}
 
                       <div className="row profile-entry">
                         <p className="profile-label">Email</p>
@@ -289,6 +378,11 @@ class Settings extends Component {
                           />
                         </div>
                       </div>
+                      {this.state.emailValid ? (
+                        ""
+                      ) : (
+                        <p className="valid-input">Must be a valid email</p>
+                      )}
 
                       <div className="row profile-entry">
                         <p className="profile-label">Example Track</p>
@@ -303,61 +397,75 @@ class Settings extends Component {
                             onChange={this.handleExampleTrackChange}
                           />
                         </div>
-                        <p
-                          className="profile-label"
-                          style={{
-                            fontStyle: "italic",
-                            fontSize: "13px",
-                            paddingBottom: "20px",
-                            paddingRight: "20px"
-                          }}
-                        >
+                      </div>
+                      {this.state.soundcloudUrlValid ? (
+                        ""
+                      ) : (
+                        <p className="valid-input">
                           The link must be a valid SoundCloud URL for the track
                           to be visible on your profile.
                         </p>
-                      </div>
-
+                      )}
                       <div className="row profile-entry">
                         <p className="profile-label">Genres</p>
-                        <Field
-                          multi={true}
-                          name="genres"
+                        <Select
+                          value={this.state.genres || genreDefaultValues}
+                          className="input-field"
                           onChange={this.handleGenresChange}
-                          value={this.props.auth.genres}
                           options={genres}
-                          component={RFReactSelect}
+                          isMulti={true}
                         />
                       </div>
+                      {this.state.genresValid ? (
+                        ""
+                      ) : (
+                        <p className="valid-input">Maximum of five genres</p>
+                      )}
 
-                      <div className="row profile-entry">
+                      <div className="row profile-entry margin-bottom">
                         <p className="profile-label">Instruments</p>
-                        <Field
-                          multi={true}
-                          name="instruments"
+                        <Select
+                          value={
+                            this.state.instruments || instrumentDefaultValues
+                          }
+                          className="input-field"
                           onChange={this.handleInstrumentsChange}
-                          value={this.props.auth.instruments}
                           options={instruments}
-                          component={RFReactSelect}
+                          isMulti={true}
                         />
                       </div>
+                      {this.state.instrumentsValid ? (
+                        ""
+                      ) : (
+                        <p className="valid-input">
+                          Maximum of five instruments
+                        </p>
+                      )}
                     </div>
-                    <Link to="/upload/track">
-                      <i className="fas fa-plus-circle upload-track" />
-                    </Link>
                   </div>
+                  <button
+                    className="behind-button green accent-3 waves-effect waves-light btn-large"
+                    disabled={
+                      !this.state.soundcloudUrlValid ||
+                      !this.state.usernameValid ||
+                      !this.state.blurbValid ||
+                      !this.state.emailValid ||
+                      !this.state.genresValid ||
+                      !this.state.instrumentsValid
+                    }
+                    type="submit"
+                  >
+                    Submit
+                  </button>
                 </div>
-
-                <button
-                  type="submit"
-                  className="green accent-3 waves-effect waves-light btn-large"
-                >
-                  Submit
-                </button>
               </form>
+              <Link to="/upload/track">
+                <i className="fas fa-plus-circle upload-track" />
+              </Link>
 
               {this.state.settingsSubmit ? (
-                <div class="row">
-                  <div class="alert success">
+                <div className="row">
+                  <div className="alert success">
                     <p>Your settings have been updated!</p>
                   </div>
                 </div>

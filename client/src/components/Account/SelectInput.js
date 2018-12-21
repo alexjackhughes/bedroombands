@@ -1,6 +1,5 @@
 import React from "react";
 import Select from "react-select";
-import "react-select/dist/react-select.css";
 
 export default props => (
   <Select
@@ -11,4 +10,3 @@ export default props => (
     options={props.options}
   />
 );
-

@@ -97,6 +97,8 @@ class SurveyForm extends Component {
   }
 
   render() {
+    console.log("form state", this.state);
+
     const genres = [
       { value: "Rock", label: "Rock" },
       { value: "Indie", label: "Indie" },
@@ -197,6 +199,7 @@ class SurveyForm extends Component {
                       onChange={this.handleArtistsChange}
                       value={this.state.artists}
                       options={artists}
+                      className="input-field"
                       component={RFReactSelect}
                     />
 
@@ -207,6 +210,7 @@ class SurveyForm extends Component {
                       onChange={this.handleGenresChange}
                       value={this.state.genres}
                       options={genres}
+                      className="input-field"
                       component={RFReactSelect}
                     />
 
@@ -217,23 +221,23 @@ class SurveyForm extends Component {
                       onChange={this.handleInstrumentsChange}
                       value={this.state.instruments}
                       options={instruments}
+                      className="input-field margin-bottom"
                       component={RFReactSelect}
                     />
-
-                    <Link
-                      to="/tracks"
-                      className="red accent-3 waves-effect waves-light btn-large"
-                    >
-                      Cancel <i className="fas fa-times-circle btn-far" />
-                    </Link>
-                    <button
-                      type="submit"
-                      className="green accent-3 waves-effect waves-light btn-large right"
-                    >
-                      Next <i className="fas fa-save btn-far" />
-                    </button>
                   </div>
                 </div>
+                <Link
+                  to="/tracks"
+                  className="behind-button red accent-3 waves-effect waves-light btn-large"
+                >
+                  Cancel <i className="fas fa-times-circle btn-far" />
+                </Link>
+                <button
+                  type="submit"
+                  className="behind-button green accent-3 waves-effect waves-light btn-large right"
+                >
+                  Next <i className="fas fa-save btn-far" />
+                </button>
               </form>
             </div>
           </div>

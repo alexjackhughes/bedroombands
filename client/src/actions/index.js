@@ -7,6 +7,8 @@ export const fetchSurveys = () => async dispatch => {
 };
 
 export const fetchTracks = () => async dispatch => {
+  console.log("state here");
+  console.log(this.state);
   const res = await axios.get("/api/tracks");
   dispatch({ type: FETCH_TRACKS, payload: res.data });
 };
@@ -17,7 +19,7 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const submitUser = (values, history) => async dispatch => {
-  console.log("API Submit User", res);
+  console.log("API Submit User", values);
   const res = await axios.put("/api/current_user", values);
   history.push("/users");
   dispatch({ type: FETCH_USER, payload: res.data });

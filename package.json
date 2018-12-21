@@ -20,20 +20,21 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "bytes": "^3.0.0",
-    "concurrently": "^3.5.1",
+    "concurrently": "^3.6.1",
     "cookie-session": "^2.0.0-beta.3",
-    "express": "^4.15.3",
+    "express": "^4.16.4",
     "gravatar": "^1.6.0",
-    "localtunnel": "^1.9.0",
-    "lodash": "^4.17.10",
-    "mongoose": "^5.1.4",
+    "localtunnel": "^1.9.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.3.10",
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.1.6",
     "passport-google-oauth20": "^1.0.0",
-    "path-parser": "^4.1.1",
+    "path-parser": "^4.2.0",
     "react-scripts": "1.1.4",
+    "react-select": "^2.1.1",
     "sendgrid": "^5.2.3",
-    "stripe": "^6.1.1",
+    "stripe": "^6.13.0",
     "underscore": "^1.9.1"
   }
 }
