@@ -126,11 +126,12 @@ module.exports = app => {
       title: req.body.title,
       soundCloudUrl: req.body.soundCloudUrl,
       description: req.body.description,
-      artists: req.body.artists, // Need to add originator
-      ratings: [{ id: req.user._id, rating: 5 }],
-      currentRating: 5,
+      artists: req.body.artists,
+      type: req.body.type,
       genres: req.body.genres,
-      instruments: req.body.instruments
+      instruments: req.body.instruments,
+      ratings: [{ id: req.user._id, rating: 5 }],
+      currentRating: 5
     });
 
     // Save track

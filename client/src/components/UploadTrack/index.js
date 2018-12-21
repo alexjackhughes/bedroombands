@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
+import AsyncSelect from "react-select/lib/Async";
 import { Redirect, withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Select from "react-select";
@@ -23,6 +24,7 @@ class UploadTrack extends Component {
       artists: [],
       ratings: [],
       genres: [],
+      users: [],
       instruments: [],
       currentRating: 0,
       titleValid: false,
@@ -35,6 +37,19 @@ class UploadTrack extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {}
+
+  getUsers() {
+    let usersArray = [];
+    axios.get("/api/users").then(users => {
+      users.data.map(user => {
+        usersArray.push({ value: user._id, label: user.username });
+      });
+    });
+
+    return usersArray;
   }
 
   handleSubmit(event) {
@@ -64,11 +79,20 @@ class UploadTrack extends Component {
       return instrument.value;
     });
 
+    let artists = this.state.artists;
+    let artistsData = artists.map(artist => {
+      if (artist !== this.props.auth._id) {
+        return artist.value;
+      }
+    });
+    artistsData.push(this.props.auth._id);
+
     let data = {
       title: this.state.title,
       soundCloudUrl: this.state.soundCloudUrl,
       description: this.state.description,
-      artists: [this.props.auth._id],
+      artists: artistsData,
+      type: this.state.type,
       genres: genresData,
       instruments: instrumentsData
     };
@@ -143,6 +167,11 @@ class UploadTrack extends Component {
     });
   }
 
+  handleArtistsChange(values) {
+    console.log("artists", values);
+    this.setState({ artists: values });
+  }
+
   handleGenresChange(values) {
     if (values.length >= 5) {
       this.setState({ genresValid: false });
@@ -160,6 +189,8 @@ class UploadTrack extends Component {
   }
 
   render() {
+    console.log("users", this.state.users);
+
     const progress = [
       { value: "artists", label: "Need Artists" },
       { value: "progress", label: "In Progress" },
@@ -182,6 +213,8 @@ class UploadTrack extends Component {
       { value: "Other", label: "Other" }
     ];
 
+    console.log("genres", this.state.genres, genres);
+
     const instruments = [
       { value: "Guitar", label: "Guitar" },
       { value: "Bass", label: "Bass" },
@@ -194,6 +227,8 @@ class UploadTrack extends Component {
       { value: "Bandola", label: "Bandola" },
       { value: "Other", label: "Other" }
     ];
+
+    const artists = this.getUsers();
 
     return (
       <div className="row" style={{ textAlign: "center" }}>
@@ -267,19 +302,18 @@ class UploadTrack extends Component {
                         </p>
                       )}
                     </div>
-                    {
-                      // Add artists in later
-                      // <div className="row profile-entry margin-bottom">
-                      //   <p className="profile-label">Artists</p>
-                      //   <Select
-                      //     value={this.state.genres}
-                      //     className="input-field"
-                      //     onChange={this.handleSelectChange.bind(this)}
-                      //     options={genres}
-                      //     isMulti={true}
-                      //   />
-                      // </div>
-                    }
+                    {this.state && this.state.users ? (
+                      <div className="row profile-entry margin-bottom">
+                        <p className="profile-label">Artists</p>
+                        <Select
+                          value={this.state.artists}
+                          className="input-field"
+                          onChange={this.handleArtistsChange.bind(this)}
+                          options={artists}
+                          isMulti={true}
+                        />
+                      </div>
+                    ) : null}
                     <div className="row profile-entry margin-bottom">
                       <p className="profile-label">Progress</p>
                       <Select

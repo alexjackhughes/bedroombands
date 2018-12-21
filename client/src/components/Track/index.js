@@ -264,7 +264,6 @@ class Track extends Component {
 
                   <div className="track-bottom">
                     <div className="row profile-entry track-authors">
-                      <p className="profile-data">{trackDescription}</p>
                       <Link to={"/track/" + track._id}>Read more</Link>
                     </div>
                     {
