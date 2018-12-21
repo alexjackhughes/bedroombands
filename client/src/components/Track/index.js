@@ -57,17 +57,17 @@ class Track extends Component {
   deleteTrack() {
     let id = this.props.track._id;
 
-    console.log("working delete");
-
     axios
       .delete("/api/track/" + id)
       // handle success
       .then(response => {
         console.log("Track deleted");
+        this.props.history.push("/"); // should re-direct the user
       })
       // handle error
       .catch(error => {
         console.log("Error", error);
+        this.props.history.push("/"); // should re-direct the user
       });
   }
 

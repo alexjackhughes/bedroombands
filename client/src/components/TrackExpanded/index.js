@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Select from "react-select";
+
 import { Field, reduxForm } from "redux-form";
 
 import NotFound from "../NotFound";
@@ -10,6 +12,10 @@ import NotFound from "../NotFound";
 class TrackExpanded extends Component {
   constructor() {
     super();
+
+    this.state = {
+      type: "progress"
+    }
 
     this.handleTitle = this.handleTitle.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
@@ -78,23 +84,27 @@ class TrackExpanded extends Component {
 
   editTrack() {
     console.log("track Edited");
-    this.setState({ editTrack: true });
+    this.setState({ editTrack: !this.state.editTrack });
+  }
+
+  sendEditTrack() {
+    console.log("edit track info", this.state);
   }
 
   deleteTrack() {
     let id = this.state.track._id;
-
-    console.log("working delete");
 
     axios
       .delete("/api/track/" + id)
       // handle success
       .then(response => {
         console.log("Track deleted");
+        this.props.history.push("/");
       })
       // handle error
       .catch(error => {
         console.log("Error", error);
+        this.props.history.push("/");
       });
   }
 
@@ -254,6 +264,13 @@ class TrackExpanded extends Component {
     this.setState({ type: event.target.value });
   }
 
+  handleSingleSelectChange(event) {
+    this.setState({
+      typeValid: true,
+      type: event.value
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -278,6 +295,13 @@ class TrackExpanded extends Component {
   }
 
   render() {
+
+    const type = [
+      { value: "artists", label: "Need Artists" },
+      { value: "progress", label: "In Progress" },
+      { value: "complete", label: "Complete" }
+    ];
+
     if (this.state && this.state.track && this.props.auth) {
       let artists = this.state.users;
       let track = this.state.track;
@@ -389,19 +413,18 @@ class TrackExpanded extends Component {
 
                     <div className="row profile-entry">
                       <p className="profile-label">Type</p>
-                      <div className="profile-data">
-                        <input
-                          className="input-data"
-                          type="text"
-                          value={this.state.type}
-                          onChange={this.handleType}
-                        />
-                      </div>
+                      <Select
+                        value={this.state.progress}
+                        className="input-field"
+                        onChange={this.handleSingleSelectChange.bind(this)}
+                        options={type}
+                        isMulti={false}
+                      />
                     </div>
                   </div>
                   <button
                     type="submit"
-                    className="green accent-3 waves-effect waves-light btn-large right"
+                    className="behind-button green accent-3 waves-effect waves-light btn-large right"
                   >
                     Submit
                   </button>
