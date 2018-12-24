@@ -25,7 +25,7 @@ class Dashboard extends Component {
 
             <div className="col s8 main-track-section dashboard-mobile">
               <div className="row add-margin-mobile">
-                <h1 className="page-title" style={{ "text-align": "center" }}>
+                <h1 className="page-title" style={{ "textAlign": "center" }}>
                   All Tracks
                 </h1>
                 <TrackList />

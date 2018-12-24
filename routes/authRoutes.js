@@ -41,14 +41,16 @@ module.exports = app => {
     const checkEmail = await User.find({
       email: req.body.email
     }).then((user) => {
-      if(user) {
+      if(user.length > 0) {
         return true;
       }
       return false;
     })
 
+    console.log("HALP", req.body.email, req.user.email, checkEmail);
+
     // if the email is the default, or has already been set
-    if(req.body.email == "example@bedroombands.com" || req.body.email === req.user.email) {
+    if(req.body.email === "example@bedroombands.com" || req.body.email === req.user.email) {
 
     // if email already exists, throw an error
     } else if (checkEmail) {

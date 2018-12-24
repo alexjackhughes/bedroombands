@@ -37,8 +37,6 @@ class Settings extends Component {
     this.handleGenresChange = this.handleGenresChange.bind(this);
     this.handleInstrumentsChange = this.handleInstrumentsChange.bind(this);
     this.setUserDefaults = this.setUserDefaults.bind(this);
-
-    this.submitForm = this.submitForm.bind(this);
   }
 
   componentDidMount() {
@@ -92,7 +90,6 @@ class Settings extends Component {
 
     if (!re.test(email)) {
       this.setState({ emailValid: false });
-      console.log("email", email);
     } else {
       this.setState({ emailValid: true });
     }
@@ -199,7 +196,6 @@ class Settings extends Component {
 
     axios.put("/api/current_user", this.state)
     .then(data => {
-      console.log("user api was updated", data);
       window.location.reload();
     })
     .catch((error) => {
@@ -217,11 +213,6 @@ class Settings extends Component {
       genres,
       instruments
     });
-  }
-
-  submitForm(e) {
-    e.preventDefault();
-    console.log("Form Sent!", this.state);
   }
 
   renderUserForm() {
@@ -344,7 +335,7 @@ class Settings extends Component {
                             className="input-data"
                             component="input"
                             type="text"
-                            contenteditable="true"
+                            contentEditable="true"
                             value={this.props.auth.blurb}
                             placeholder={this.props.auth.blurb}
                             onChange={this.handleBlurbChange}

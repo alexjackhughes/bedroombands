@@ -6,11 +6,9 @@ import Track from "../Track";
 class TrackList extends React.Component {
   constructor(props) {
     super(props);
-    console.log("help");
   }
 
   componentDidMount() {
-    console.log("WORKINGGGGGG");
     // if (this.props.tracks === undefined) {
     let limit = this.state && this.state.limit ? this.state.limit : 10;
 
@@ -20,7 +18,6 @@ class TrackList extends React.Component {
         this.setState({ tracks: tracks.data, limit });
       })
       .then(tracks => {
-        console.log("tracks", tracks);
       });
     // } else {
     //   console.log("from props", this.props.tracks);

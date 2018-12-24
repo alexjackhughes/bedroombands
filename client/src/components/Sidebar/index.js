@@ -38,9 +38,9 @@ class Sidebar extends Component {
             <hr className="category-line" />
 
             <Link to={"/tracks/artists"} style={{ color: "#2B3854" }}>
-              <p class="category-item">
-                <i class="fas fa-headphones category-icon solo-icon" />
-                <span class="category-text">Need Artists</span>
+              <p className="category-item">
+                <i className="fas fa-headphones category-icon solo-icon" />
+                <span className="category-text">Need Artists</span>
               </p>
             </Link>
             <Link to={"/tracks/progress"} style={{ color: "#2B3854" }}>

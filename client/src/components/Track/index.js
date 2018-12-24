@@ -276,7 +276,7 @@ class Track extends Component {
 
                 {/* Set an alert when rating */}
                 {this.state.trackRated ? (
-                  <div class="alert success add-top-space">
+                  <div className="alert success add-top-space">
                     <p>Thanks for rating this track!</p>
                   </div>
                 ) : (
