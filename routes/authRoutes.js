@@ -47,8 +47,6 @@ module.exports = app => {
       return false;
     })
 
-    console.log("HALP", req.body.email, req.user.email, checkEmail);
-
     // if the email is the default, or has already been set
     if(req.body.email === "example@bedroombands.com" || req.body.email === req.user.email) {
 

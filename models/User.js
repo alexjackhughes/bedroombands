@@ -3,8 +3,8 @@ const { Schema } = mongoose;
 
 /* Create Schema */
 let x = ['Purple', 'Red', 'Green', 'Blue', 'Yellow', 'Pink', 'Orange', 'Burgundy', 'Byzantium', 'Crimson', 'Coral', 'Lime', 'Ivory', 'Jade', 'Lemon', 'Lavender', 'Pear', 'Tan', 'White'];
-let y = ['Fancy', 'Plump', 'Clever', 'Shy', 'Gifted', 'Lively', 'Sparkly', 'Grumpy', 'Immense', 'Short', 'Stumpy', 'Tinkly', 'Sparkly', 'Squeaking'];
-let z = ['Monkey', 'Dinosaur', 'Cat', 'Dog', 'Artist', 'Ship', 'Mouse', 'Jellyfish', 'Ant', 'Bug', 'Spider', 'Fly', 'Clever'];
+let y = ['Fancy', 'Plump', 'Shy', 'Gifted', 'Lively', 'Sparkly', 'Grumpy', 'Immense', 'Short', 'Stumpy', 'Tinkly', 'Sparkly', 'Squeaking', 'Clever'];
+let z = ['Monkey', 'Dinosaur', 'Cat', 'Dog', 'Lion', 'Ship', 'Mouse', 'Jellyfish', 'Ant', 'Bug', 'Spider', 'Fly', 'Lynx', 'Lizard', 'Bird', 'Fox', 'Hare', 'Bear', 'Ape'];
 
 let username = `${x[Math.floor(Math.random() * x.length)]} ${y[Math.floor(Math.random() * y.length)]} ${z[Math.floor(Math.random() * z.length)]}`;
 

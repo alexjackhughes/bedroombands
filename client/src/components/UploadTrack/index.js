@@ -230,6 +230,10 @@ class UploadTrack extends Component {
 
     const artists = this.getUsers();
 
+    if(!this.props.auth) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div className="row" style={{ textAlign: "center" }}>
         <h1 className="profile-title centre">Add Track</h1>
