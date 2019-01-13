@@ -72,7 +72,7 @@ class GenericTracks extends Component {
             <h1 className="profile-title">Tracks</h1>
             <p>Looks like you don't have any tracks here yet :(</p>
             <div className="row">
-              <TrackList tracks={this.state.tracks} />
+              {/* <TrackList tracks={this.state.tracks} /> */}
             </div>
           </div>
         </div>
