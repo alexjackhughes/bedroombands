@@ -68,7 +68,7 @@ class GenericTracks extends Component {
     return (
       <div>
         <div className="row">
-          <div className="centre col s8 offset-s2">
+          <div className="centre col s8 offset-s2 add-bottom-margin ">
             <h1 className="profile-title">Tracks</h1>
             <p>Looks like you don't have any tracks here yet :(</p>
             <div className="row">

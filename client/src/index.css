@@ -830,3 +830,8 @@ h6 {
 .margin-bottom {
   margin-bottom: 20px;
 }
+
+.add-bottom-margin {
+  margin-top: 250px !important;
+  margin-bottom: 250px !important;
+}
