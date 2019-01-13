@@ -40,7 +40,7 @@ class Sidebar extends Component {
             <Link to={"/tracks/artists"} style={{ color: "#2B3854" }}>
               <p className="category-item">
                 <i className="fas fa-headphones category-icon solo-icon" />
-                <span className="category-text">Need Artists</span>
+                <span className="category-text">Looking For Group</span>
               </p>
             </Link>
             <Link to={"/tracks/progress"} style={{ color: "#2B3854" }}>
@@ -49,7 +49,7 @@ class Sidebar extends Component {
                 <span className="category-text">In Progress</span>
               </p>
             </Link>
-            <Link to={"/tracks/completed"} style={{ color: "#2B3854" }}>
+            <Link to={"/tracks/complete"} style={{ color: "#2B3854" }}>
               <p className="category-item">
                 <i className="fas fa-check category-icon complete-icon" />
                 <span className="category-text">Complete</span>

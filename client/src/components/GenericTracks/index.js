@@ -52,8 +52,8 @@ class GenericTracks extends Component {
               </p>
             ) : null}
             <p>
-              Ready to collaborate? You can upload a track 
-              <Link to="/upload/track">at any time</Link>!
+              Ready to collaborate? You can upload a track
+              <Link to="/upload/track"> at any time</Link>!
             </p>
             <div className="row">
               <TrackList tracks={this.state.tracks} />
