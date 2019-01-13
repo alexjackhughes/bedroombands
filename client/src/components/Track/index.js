@@ -10,7 +10,8 @@ class Track extends Component {
   constructor() {
     super();
     this.state = {
-      trackRated: false
+      trackRated: false,
+      nowLiked: false
     };
   }
 
@@ -88,7 +89,8 @@ class Track extends Component {
       // always executed
       .then(() => {
         console.log("track liked");
-        window.location.reload();
+        this.setState({ nowLiked: !this.state.nowLiked });
+        // window.location.reload();
       });
   }
 
@@ -135,7 +137,7 @@ class Track extends Component {
 
   renderLikeButton() {
     let id = this.props.track._id;
-    if (this.props.auth.likedTracks.indexOf(id) > -1) {
+    if (this.props.auth.likedTracks.indexOf(id) > -1 || this.state.nowLiked) {
       return (
         <a
           href="#"

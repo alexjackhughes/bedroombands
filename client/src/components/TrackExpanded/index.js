@@ -14,8 +14,9 @@ class TrackExpanded extends Component {
     super();
 
     this.state = {
-      type: "progress"
-    }
+      type: "progress",
+      nowLiked: false
+    };
 
     this.handleTitle = this.handleTitle.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
@@ -125,7 +126,8 @@ class TrackExpanded extends Component {
       // always executed
       .then(() => {
         console.log("track liked");
-        window.location.reload();
+        this.setState({ nowLiked: !this.state.nowLiked });
+        // window.location.reload();
       });
   }
 
@@ -172,8 +174,8 @@ class TrackExpanded extends Component {
 
   renderLikeButton() {
     let id = this.state.track._id;
-    console.log("true", this.props.auth.likedTracks.indexOf(id) > -1);
-    if (this.props.auth.likedTracks.indexOf(id) > -1) {
+    // console.log("true", (this.props.auth.likedTracks.indexOf(id) > -1) || ());
+    if (this.props.auth.likedTracks.indexOf(id) > -1 || this.state.nowLiked) {
       return (
         <a
           href="#"
@@ -295,7 +297,6 @@ class TrackExpanded extends Component {
   }
 
   render() {
-
     const type = [
       { value: "artists", label: "Need Artists" },
       { value: "progress", label: "In Progress" },
