@@ -9,16 +9,25 @@ class TrackList extends React.Component {
   }
 
   componentDidMount() {
-    // if (this.props.tracks === undefined) {
-    let limit = this.state && this.state.limit ? this.state.limit : 10;
+    if (this.props.tracks === undefined) {
+      let limit = this.state && this.state.limit ? this.state.limit : 10;
 
-    axios
-      .get(`/api/tracks/${limit}`)
-      .then(tracks => {
+      axios.get(`/api/tracks/${limit}`).then(tracks => {
         this.setState({ tracks: tracks.data, limit });
-      })
-      .then(tracks => {
       });
+    } else {
+      this.setState({ tracks: this.props.tracks });
+    }
+    // if (this.props.tracks === undefined) {
+    // let limit = this.state && this.state.limit ? this.state.limit : 10;
+    //
+    // axios
+    //   .get(`/api/tracks/${limit}`)
+    //   .then(tracks => {
+    //     this.setState({ tracks: tracks.data, limit });
+    //   })
+    //   .then(tracks => {
+    //   });
     // } else {
     //   console.log("from props", this.props.tracks);
     //

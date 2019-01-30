@@ -23,7 +23,6 @@ class GenericTracks extends Component {
 
       axios.get(`/api/tracks/rating/${rating}`).then(tracks => {
         this.setState({ tracks: tracks.data });
-        console.log("data from api", tracks);
       });
     } else {
       let title = this.props.match.params.type.replace(/\b\w/g, l =>
@@ -34,7 +33,6 @@ class GenericTracks extends Component {
 
       axios.get(`/api/tracks/type/${type}`).then(tracks => {
         this.setState({ tracks: tracks.data });
-        console.log("data from api", tracks);
       });
     }
   }

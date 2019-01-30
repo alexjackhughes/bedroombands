@@ -119,14 +119,16 @@ module.exports = app => {
       });
     }
 
-    console.log(req.body.artists);
+    // make sure all artists are unique
+    let artists = new Set(req.body.artists);
+    artists = [...artists];
 
     // Create the track model
     const track = new Track({
       title: req.body.title,
       soundCloudUrl: req.body.soundCloudUrl,
       description: req.body.description,
-      artists: req.body.artists,
+      artists,
       type: req.body.type,
       genres: req.body.genres,
       instruments: req.body.instruments,
