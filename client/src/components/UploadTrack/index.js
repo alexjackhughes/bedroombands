@@ -80,12 +80,14 @@ class UploadTrack extends Component {
     });
 
     let artists = this.state.artists;
+
+    // could use a filter here
     let artistsData = artists.map(artist => {
       if (artist !== this.props.auth._id) {
         return artist.value;
       }
     });
-    artistsData.push(this.props.auth._id);
+    // artistsData.push(this.props.auth._id);
 
     let data = {
       title: this.state.title,
@@ -230,7 +232,7 @@ class UploadTrack extends Component {
 
     const artists = this.getUsers();
 
-    if(!this.props.auth) {
+    if (!this.props.auth) {
       return <Redirect to="/" />;
     }
 
