@@ -6,7 +6,9 @@ _There are so many good musicians out there, all writing and recording in their 
 
 _We want to use technology to unite bedroom musicians, and to make possible international collaborations that would have been impossible even 10 years ago. We want to help create bedroom bands with members all over the world!_
 
-_BedroomBands is a community project written in React and Node._
+_BedroomBands is a community project written in React and Node. You can see what we've built so far, over on:_
+
+[https://bedroombands.com](https://www.bedroombands.com/)
 
 ## Getting Started
 
