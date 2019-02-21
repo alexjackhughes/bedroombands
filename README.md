@@ -1,6 +1,6 @@
 # BedroomBands
 
-![alt text](https://www.bedroombands.com/bedroombands-landing.png)
+<img src="https://www.bedroombands.com/bedroombands-landing.png" alt="bedroombands logo" width="400"/>
 
 _There are so many good musicians out there, all writing and recording in their bedrooms. If you're here, you're probably one of them._
 
@@ -8,7 +8,7 @@ _We want to use technology to unite bedroom musicians, and to make possible inte
 
 _BedroomBands is a community project written in React and Node. You can see what we've built so far, over on:_
 
-[https://bedroombands.com](https://www.bedroombands.com/)
+[https://bedroombands.com](https://www.bedroombands.com)
 
 ## Getting Started
 
