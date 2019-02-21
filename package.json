@@ -36,6 +36,7 @@
     "react-select": "^2.1.1",
     "sendgrid": "^5.2.3",
     "stripe": "^6.13.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.9.1",
+    "react-dev-utils": ">=5.0.2"
   }
 }
