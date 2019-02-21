@@ -95,34 +95,26 @@ class Track extends Component {
   }
 
   renderArtistList(artists) {
-    let links = [];
-
-    artists.map(artist => {
-      links.push(
-        <Link key={artist.id} to={"/artist/" + artist._id} key={artist.id}>
+    let links = artists.map((artist, index) => {
+      return (
+        <Link key={artist._id} to={"/artist/" + artist._id}>
           {artist.username}
         </Link>
       );
     });
 
-    // Add spacing + commas
-    let i = 0;
-    let counter = 0;
-    let artistList = [];
-
-    while (i <= links.length) {
-      artistList[i] = links[counter];
-
-      // if last artist, don't add comma + spacing - else do
-      if (i !== links.length) {
-        artistList[i + 1] = ", ";
-        i++;
-      }
-      counter++;
-      i++;
+    // if there's only one artist, return
+    if (links.length === 1) {
+      return links;
     }
 
-    return artistList;
+    // If multiple, return with commas
+    return links.map((link, index) => {
+      if (index === links.length - 1) {
+        return <span key={index}>{link}</span>;
+      }
+      return <span key={index}>{link}, </span>;
+    });
   }
 
   renderTags(tags) {

@@ -79,15 +79,13 @@ class UploadTrack extends Component {
       return instrument.value;
     });
 
-    let artists = this.state.artists;
-
-    // could use a filter here
-    let artistsData = artists.map(artist => {
-      if (artist !== this.props.auth._id) {
-        return artist.value;
-      }
+    let artists = this.state.artists.map(artist => {
+      return artist.value;
     });
-    // artistsData.push(this.props.auth._id);
+    artists.push(this.props.auth._id);
+
+    const artistSet = new Set([...artists]);
+    const artistsData = [...artistSet];
 
     let data = {
       title: this.state.title,

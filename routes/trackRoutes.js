@@ -121,7 +121,6 @@ module.exports = app => {
 
     // make sure all artists are unique
     artists = [...req.body.artists];
-    artists.push(req.user._id + "");
 
     // Create the track model
     const track = new Track({
