@@ -181,12 +181,7 @@ module.exports = app => {
     return res.status(404).send({ message: "You don't own this track" });
   });
 
-  // Rate a track has a number of conditions:
-  // 1. make sure user hasn't rated before
-  // 2. allow user to rate track
-  // 3. calculate the new current rating for track
-  //
-  // NOT WORKING
+  // no longer used
   app.put(
     "/api/rate-track/:trackId/rating/:rating",
     requireLogin,
@@ -293,27 +288,21 @@ module.exports = app => {
   });
 
   // DELETE: A Track
-  app.delete(
-    "/api/track/:trackId",
-    requireLogin,
-    requireTrack,
-    async (req, res) => {
-      console.log("got to here");
-      Track.findByIdAndRemove(req.params.trackId)
-        .then(track => {
-          res.send({ message: "The Track was deleted successfully" });
-        })
+  app.delete("/api/track/:trackId", requireLogin, async (req, res) => {
+    Track.findByIdAndRemove(req.params.trackId)
+      .then(track => {
+        res.send({ message: "The Track was deleted successfully" });
+      })
 
-        // Remove track id from current users' tracks
-        .then(async () => {
-          let index = req.user.myTracks.indexOf(req.params.trackId);
-          if (index > -1) {
-            req.user.myTracks.splice(index, 1);
-            const user = await req.user.save();
+      // Remove track id from current users' tracks
+      .then(async () => {
+        let index = req.user.myTracks.indexOf(req.params.trackId);
+        if (index > -1) {
+          req.user.myTracks.splice(index, 1);
+          const user = await req.user.save();
 
-            res.send(user);
-          }
-        });
-    }
-  );
+          res.send(user);
+        }
+      });
+  });
 };

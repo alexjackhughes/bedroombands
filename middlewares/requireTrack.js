@@ -7,14 +7,16 @@ module.exports = (req, res, next) => {
   if (myTracks.length < 1 || myTracks == undefined)
     return res.status(401).send({ error: "You don't have any tracks!" });
 
-  let check = true;
-  myTracks.map((track) => {
-    if(String(req.params.trackId) == String(track)) {
-      check = false;
+  let authorised = false;
+
+  req.body.artists.map(track => {
+    if (track == req.user._id) {
+      console.log("waaaaaaay");
+      authorised = true;
     }
   });
 
-  if(check) {
+  if (!authorised) {
     return res.status(401).send({ error: "You don't own this track!" });
   } else {
     next();

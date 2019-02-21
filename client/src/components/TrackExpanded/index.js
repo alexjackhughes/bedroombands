@@ -26,12 +26,12 @@ class TrackExpanded extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
-    // should also have the track data
-    console.log(this.props.match.params.trackId);
+    this.renderTracks();
+  }
 
+  renderTracks() {
     axios.get(`/api/track/${this.props.match.params.trackId}`).then(track => {
       this.setState({ track: track.data });
-      console.log("track", track.data);
 
       this.setState({
         trackUpdated: false,
@@ -55,7 +55,6 @@ class TrackExpanded extends Component {
           })
           .then(data => {
             this.setState({ users: users });
-            //console.log('users', this.state.users);
           });
       });
     });
@@ -64,47 +63,49 @@ class TrackExpanded extends Component {
   // Rating track - need to make api call
   rateTrack(e, rating) {
     let id = this.state.track._id;
-    console.log("rating", rating);
 
     axios
       .put("/api/rate-track/" + id + "/rating/" + rating)
       // handle success
-      .then(response => {
-        console.log(response);
-      })
+      .then(response => {})
       // handle error
-      .catch(error => {
-        console.log("Error", error);
-      })
+      .catch(error => {})
       // always executed
       .then(() => {
         this.setState({ trackRated: true });
-        console.log("track liked");
       });
   }
 
   editTrack() {
-    console.log("track Edited");
     this.setState({ editTrack: !this.state.editTrack });
   }
 
-  sendEditTrack() {
-    console.log("edit track info", this.state);
-  }
+  sendEditTrack() {}
 
   deleteTrack() {
     let id = this.state.track._id;
 
+    let track = {
+      id: this.state.track._id,
+      title: this.state.title,
+      soundCloudUrl: this.state.soundCloudUrl,
+      description: this.state.description,
+      artists: this.state.artists,
+      ratings: this.state.track.ratings,
+      currentRating: this.state.track.currentRating,
+      genres: this.state.track.genres,
+      instruments: this.state.track.instruments,
+      type: this.state.type
+    };
+
     axios
-      .delete("/api/track/" + id)
+      .delete("/api/track/" + id, track)
       // handle success
       .then(response => {
-        console.log("Track deleted");
         this.props.history.push("/");
       })
       // handle error
       .catch(error => {
-        console.log("Error", error);
         this.props.history.push("/");
       });
   }
@@ -116,50 +117,37 @@ class TrackExpanded extends Component {
     axios
       .put("/api/liked-tracks/" + id)
       // handle success
-      .then(response => {
-        console.log(response);
-      })
+      .then(response => {})
       // handle error
-      .catch(error => {
-        console.log("Error", error);
-      })
+      .catch(error => {})
       // always executed
       .then(() => {
-        console.log("track liked");
         this.setState({ nowLiked: !this.state.nowLiked });
         // window.location.reload();
       });
   }
 
   renderArtistList(artists) {
-    let links = [];
-
-    artists.map(artist => {
-      links.push(
-        <Link key={artist.id} to={"/artist/" + artist._id} key={artist.id}>
+    let links = artists.map((artist, index) => {
+      return (
+        <Link key={artist._id} to={"/artist/" + artist._id}>
           {artist.username}
         </Link>
       );
     });
 
-    // Add spacing + commas
-    let i = 0;
-    let counter = 0;
-    let artistList = [];
-
-    while (i <= links.length) {
-      artistList[i] = links[counter];
-
-      // if last artist, don't add comma + spacing - else do
-      if (i !== links.length) {
-        artistList[i + 1] = ", ";
-        i++;
-      }
-      counter++;
-      i++;
+    // if there's only one artist, return
+    if (links.length === 1) {
+      return links;
     }
 
-    return artistList;
+    // If multiple, return with commas
+    return links.map((link, index) => {
+      if (index === links.length - 1) {
+        return <span key={index}>{link}</span>;
+      }
+      return <span key={index}>{link}, </span>;
+    });
   }
 
   renderTags(tags) {
@@ -174,7 +162,6 @@ class TrackExpanded extends Component {
 
   renderLikeButton() {
     let id = this.state.track._id;
-    // console.log("true", (this.props.auth.likedTracks.indexOf(id) > -1) || ());
     if (this.props.auth.likedTracks.indexOf(id) > -1 || this.state.nowLiked) {
       return (
         <a
@@ -276,9 +263,8 @@ class TrackExpanded extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log("state", this.state);
-
     let track = {
+      id: this.state.track._id,
       title: this.state.title,
       soundCloudUrl: this.state.soundCloudUrl,
       description: this.state.description,
@@ -291,8 +277,8 @@ class TrackExpanded extends Component {
     };
 
     axios.put("/api/track/" + this.state.track._id, track).then(data => {
-      console.log("user api was updated");
       this.setState({ trackUpdated: true });
+      this.renderTracks();
     });
   }
 
