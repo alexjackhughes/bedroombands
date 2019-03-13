@@ -18,16 +18,18 @@ class Track extends Component {
   componentDidMount() {
     let users = [];
 
-    this.props.track.artists.forEach(artist => {
-      axios
-        .get(`/api/user/${artist}`)
-        .then(user => {
-          users.push(user.data);
-        })
-        .then(data => {
-          this.setState({ users: users });
-        });
-    });
+    if (this.props && this.props.track && this.props.track.artists) {
+      this.props.track.artists.forEach(artist => {
+        axios
+          .get(`/api/user/${artist}`)
+          .then(user => {
+            users.push(user.data);
+          })
+          .then(data => {
+            this.setState({ users: users });
+          });
+      });
+    }
   }
 
   // Rating track - need to make api call
@@ -242,7 +244,7 @@ class Track extends Component {
                         </div>
                       </div>
                       <div className="col s4 like-section">
-                        {this.renderLikeButton()}
+                        {this.props && this.renderLikeButton()}
                       </div>
                     </div>
                   </div>

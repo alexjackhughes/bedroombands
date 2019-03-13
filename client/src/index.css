@@ -441,78 +441,9 @@ h6 {
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
 }
 
-.sidebar {
-  margin-top: 35px;
-  padding-bottom: 20px;
-  background-color: white !important;
-  border-radius: 12px;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
-}
-
-.sidebar:hover {
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
-}
-
-.category-item {
-  text-align: left;
-  padding-top: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 10px;
-  font-size: 20px !important;
-  opacity: 0.5;
-  font-weight: bold;
-}
-
-.category-icon {
-  padding-right: 20px;
-  font-size: 32px !important;
-}
-
-.category-line {
-  border: none;
-  background-color: #2b3854;
-  color: #2b3854;
-  opacity: 0.1;
-  height: 3px;
-  margin: 30px;
-}
-
-.featured-icon {
-  color: #f5b64e;
-}
-
-.like-icon {
-  color: #eb3a4b;
-}
-
-.track-icon {
-  color: #00e676;
-}
-
-.solo-icon {
-  color: #eb3a4b;
-}
-
-.collab-icon {
-  color: #f5b64e;
-}
-
-.complete-icon {
-  color: #00e676;
-}
-
 .rating-icon {
   color: #f5b64e;
   font-size: 20px !important;
-}
-
-.category-item-active {
-  opacity: 0.9 !important;
-}
-
-.category-item:hover {
-  opacity: 0.8 !important;
 }
 
 .input-box {
@@ -550,10 +481,6 @@ h6 {
 ::-webkit-input-placeholder {
   color: #2b3854 !important;
   opacity: 1 !important;
-}
-
-.sidebar {
-  background-color: #f5f8fa;
 }
 
 .main-track-section {
@@ -657,14 +584,6 @@ h6 {
 
 .rating-icon {
   color: #f5b64e;
-}
-
-.category-item-active {
-  opacity: 0.9 !important;
-}
-
-.category-item:hover {
-  opacity: 0.8 !important;
 }
 
 .searchbox {
@@ -834,4 +753,67 @@ h6 {
 .add-bottom-margin {
   margin-top: 250px !important;
   margin-bottom: 250px !important;
+}
+
+/* New Sidebar */
+
+.sidebar {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-item {
+  font-size: 1.8vw;
+  font-weight: bold;
+  color: #2b3854;
+  opacity: 0.5;
+  overflow-wrap: normal;
+  padding: 2px;
+}
+
+.sidebar-item:hover {
+  opacity: 1;
+}
+
+.sidebar-icon {
+  padding-right: 10px;
+}
+
+.featured-icon {
+  color: #f5b64e;
+}
+
+.favourite-icon {
+  color: #eb3a4b;
+}
+
+.tracks-icon {
+  color: #00e676;
+}
+
+.lfg-icon {
+  color: #eb3a4b;
+}
+
+.progress-icon {
+  color: #f5b64e;
+}
+
+.complete-icon {
+  color: #00e676;
+}
+
+.sidebar-line {
+  border: none;
+  background-color: #2b3854;
+  opacity: 0.1;
+  border-radius: 10px;
+  color: #2b3854;
+  height: 0.5vw;
+  margin: 30px;
 }
