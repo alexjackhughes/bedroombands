@@ -27,7 +27,7 @@ class Sidebar extends Component {
               <Link to={"/artist/" + this.props.id + "/liked"}>
                 <p className="sidebar-item">
                   <i className="far fa-heart sidebar-icon favourite-icon" />
-                  <span className="sidebar-text">My Favourites</span>
+                  <span className="sidebar-text">My Likes</span>
                 </p>
               </Link>
               <Link to={"/artist/" + this.props.id + "/tracks"}>
