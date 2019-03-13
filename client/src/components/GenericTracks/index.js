@@ -54,7 +54,7 @@ class GenericTracks extends Component {
               <Link to="/upload/track"> at any time</Link>!
             </p>
             <div className="row">
-              <TrackList tracks={this.state.tracks} />
+              <TrackList tracks={this.state.tracks} title={this.state.title} />
             </div>
           </div>
           <Link to="/upload/track">

@@ -90,7 +90,7 @@ class TrackList extends React.Component {
   }
 
   render() {
-    console.log("woo", this.props.tracks, this.state);
+    console.log("wee", this.props.title);
     if (this.state) {
       switch (this.state.tracks) {
         case null:
@@ -104,12 +104,14 @@ class TrackList extends React.Component {
                 // here tracks should be real
                 return <Track key={track._id} track={track} />;
               })}
-              <button
-                className="blue lighten-2 waves-effect waves-light btn-large"
-                onClick={() => this.onChangeLimit()}
-              >
-                Load Tracks
-              </button>
+              {
+                // <button
+                //   className="blue lighten-2 waves-effect waves-light btn-large"
+                //   onClick={() => this.onChangeLimit()}
+                // >
+                //   Load Tracks
+                // </button>
+              }
             </div>
           );
       }
