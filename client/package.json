@@ -19,6 +19,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-ga": "^2.5.3",
+    "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-router-ga": "^1.0.0",

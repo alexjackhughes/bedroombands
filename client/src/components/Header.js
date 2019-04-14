@@ -47,7 +47,17 @@ class Header extends Component {
               Tracks
             </Link>
           </li>,
-          <li key="6" className="right black-text">
+          <li key="6">
+            <a
+              href="https://medium.com/bedroom-bands"
+              className="right black-text"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blog
+            </a>
+          </li>,
+          <li key="7" className="right black-text">
             <a
               href="http://reddit.com/r/bedroombands"
               target="_blank"
