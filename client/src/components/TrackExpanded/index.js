@@ -215,7 +215,12 @@ class TrackExpanded extends Component {
   renderEditingTools() {
     let x = false;
     this.state.track.artists.map(artist => {
-      if (String(this.props.auth._id) === String(artist)) {
+      if (
+        String(this.props.auth._id) === String(artist) || // artist ID
+        String(this.props.auth._id) === "5c3788cd91977d0014811145" || // Alex ID
+        String(this.props.auth._id) === "5c2cc74eeba14d41b8050028" || // Local ID
+        String(this.props.auth._id) === "5c38a1fde3057e001412dcb7" // Peter ID
+      ) {
         x = true;
       }
     });
