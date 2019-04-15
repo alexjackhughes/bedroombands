@@ -12,7 +12,6 @@ import Artist from "./Artist";
 import TrackNew from "./Tracks/TrackNew";
 import Settings from "./Settings";
 import Account from "./Account/Account";
-import SurveyNew from "./surveys/SurveyNew"; // This is causing the bug where new tracks are actually surveys
 import TrackExpanded from "./TrackExpanded";
 import UserTracks from "./UserTracks";
 import GenericTracks from "./GenericTracks";
@@ -21,6 +20,7 @@ import NotFound from "./NotFound";
 
 import Terms from "./static/Terms";
 import PrivacyPolicy from "./static/PrivacyPolicy";
+import AlbumLandingPage from "./static/AlbumLandingPage";
 
 import Footer from "./Footer";
 
@@ -51,6 +51,7 @@ class App extends Component {
                   path="/docs/privacy-policy"
                   component={PrivacyPolicy}
                 />
+                <Route exact path="/album" component={AlbumLandingPage} />
                 <Route exact path="/artist/:userId" component={Artist} />
                 <Route
                   exact

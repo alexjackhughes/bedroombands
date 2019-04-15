@@ -116,6 +116,10 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: #34ade4;
+}
+
+#root {
   background-color: rgba(246, 248, 250, 1);
 }
 
@@ -816,4 +820,27 @@ h6 {
   color: #2b3854;
   height: 0.5vw;
   margin: 30px;
+}
+
+.album-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.album-landing-image {
+  max-width: 50%;
+  height: auto;
+}
+
+.album-call-to-action {
+  background-color: white;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+.album-call-to-action:hover {
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
 }
