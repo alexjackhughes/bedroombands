@@ -75,6 +75,28 @@ class Track extends Component {
   }
 
   // Allows the user to like a track
+  unlikeTrack() {
+    let id = this.props.track._id;
+
+    axios
+      .delete("/api/liked-tracks/" + id)
+      // handle success
+      .then(response => {
+        console.log(response);
+      })
+      // handle error
+      .catch(error => {
+        console.log("Error", error);
+      })
+      // always executed
+      .then(() => {
+        console.log("track liked");
+        this.setState({ nowLiked: !this.state.nowLiked });
+        // window.location.reload();
+      });
+  }
+
+  // Allows the user to like a track
   likeTrack() {
     let id = this.props.track._id;
 
@@ -135,7 +157,7 @@ class Track extends Component {
       return (
         <a
           href="#"
-          onClick={() => this.likeTrack()}
+          onClick={() => this.unlikeTrack()}
           className="fas fa-heart like-button"
         />
       );

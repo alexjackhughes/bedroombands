@@ -65,14 +65,14 @@ class AlbumLandingPage extends Component {
               </p>
               <p style={{ fontSize: "16px" }}>
                 We're building a platform to help increase their reach and find
-                new, interesting collaborations. Why not join over 12,000
-                artists creating new tracks every day?
+                new, interesting collaborations. Why not join over 13K artists
+                from around the world creating new tracks every day?
               </p>
               <a
                 href="/auth/google"
                 className="blue lighten-2 waves-effect waves-light btn-large"
               >
-                LOGIN WITH GOOGLE
+                ONE-CLICK LOGIN
               </a>
             </div>
           </div>

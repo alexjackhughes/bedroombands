@@ -111,6 +111,28 @@ class TrackExpanded extends Component {
   }
 
   // Allows the user to like a track
+  unlikeTrack() {
+    let id = this.state.track._id;
+
+    axios
+      .delete("/api/liked-tracks/" + id)
+      // handle success
+      .then(response => {
+        console.log(response);
+      })
+      // handle error
+      .catch(error => {
+        console.log("Error", error);
+      })
+      // always executed
+      .then(() => {
+        console.log("track liked");
+        this.setState({ nowLiked: !this.state.nowLiked });
+        // window.location.reload();
+      });
+  }
+
+  // Allows the user to like a track
   likeTrack() {
     let id = this.state.track._id;
 
@@ -166,7 +188,7 @@ class TrackExpanded extends Component {
       return (
         <a
           href="#"
-          onClick={() => this.likeTrack()}
+          onClick={() => this.unlikeTrack()}
           className="fas fa-heart like-button"
         />
       );
@@ -216,7 +238,9 @@ class TrackExpanded extends Component {
     let x = false;
     this.state.track.artists.map(artist => {
       if (
-        String(this.props.auth._id) === String(artist) || // artist ID
+        (this.props &&
+          this.props.auth &&
+          String(this.props.auth._id) === String(artist)) || // artist ID
         String(this.props.auth._id) === "5c3788cd91977d0014811145" || // Alex ID
         String(this.props.auth._id) === "5c2cc74eeba14d41b8050028" || // Local ID
         String(this.props.auth._id) === "5c38a1fde3057e001412dcb7" // Peter ID
