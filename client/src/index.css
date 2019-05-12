@@ -4,6 +4,18 @@
     padding-top: 50px;
     padding-bottom: 50px;
   }
+
+  .upload-track {
+    background: white;
+    border-radius: 50%;
+    border: 1px solid white;
+    font-size: 75px;
+    color: #eb3a4b;
+    position: fixed;
+    bottom: 90px !important;
+    right: 10px;
+  }
+
   /* .container {
     margin: 0 auto !important;
     max-width: none !important;
