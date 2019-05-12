@@ -65,6 +65,11 @@ class Header extends Component {
             >
               Community
             </a>
+          </li>,
+          <li key="8">
+            <Link to="/album" className="right black-text">
+              2019 Album
+            </Link>
           </li>
         ];
     }
