@@ -14,7 +14,10 @@ class AlbumLandingPage extends Component {
             />
           </div>
           <div className="album-content">
-            <h1 className="page-title">Looking For A Group: The Album</h1>
+            <h1 className="page-title">
+              Looking For Group:
+              <br />A Bedroom Bands Album
+            </h1>
             <p className="album-paragraph">
               An experiment in collaboration, this album has been written,
               recorded and released by people who have never met.
