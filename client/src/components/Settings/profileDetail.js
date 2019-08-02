@@ -7,6 +7,7 @@ class ProfileDetail extends Component {
       <div>
         <div className="row">
           <img
+            alt="profile"
             className="profile-image"
             src={"https:" + this.props.gravatarUrl}
           />

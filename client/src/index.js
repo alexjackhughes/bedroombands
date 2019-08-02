@@ -9,8 +9,17 @@ import reduxThunk from "redux-thunk";
 
 import App from "./components/App";
 import reducers from "./reducers";
+import Axios from "axios";
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+
+//  componentDidMount (){
+//  Axios.get('url').then(res =>{
+
+//    this.SVGElementInstanceList({returneddata: res.data})
+//  })
+
+// }
 
 ReactDOM.render(
   <Provider store={store}>
