@@ -15,10 +15,6 @@ _BedroomBands is a community project written in React and Node. You can see what
 After installing the dependencies in both `client` and `server`, you can run the application from the console:
 
 ```
-cd server
-```
-
-```
 npm run dev
 ```
 

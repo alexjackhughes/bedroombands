@@ -29,7 +29,7 @@ class Dashboard extends Component {
         return (
           <div className="row margin-sizing">
             <div className="col s3 sidebar hide-sidebar-mobile">
-              <Sidebar id={this.props.auth._id} />
+              <Sidebar id={this.props.auth._id} to="/tracks/complete" />
             </div>
 
             <div className="col s8 main-track-section dashboard-mobile">
