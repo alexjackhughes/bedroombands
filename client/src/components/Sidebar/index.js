@@ -49,7 +49,7 @@ class Sidebar extends Component {
                   <span className="sidebar-text">In Progress</span>
                 </p>
               </Link>
-              <Link to={this.props.test}>
+              <Link to={"/tracks/complete"}>
                 <p className="sidebar-item">
                   <i className="fas fa-check sidebar-icon complete-icon" />
                   <span className="sidebar-text">Complete</span>
