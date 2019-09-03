@@ -4,9 +4,9 @@ module.exports = {
   googleSecret: process.env.GOOGLE_SECRET,
   mongoURI: process.env.MONGO_URI,
   cookieKey: process.env.COOKIE_KEY,
-  googleCallbackURI: 'https://www.bedroombands.com/auth/google/callback',
+  googleCallbackURI: "https://www.bedroombands.com/auth/google/callback",
   stripePublishableKey: process.env.STRIPE_PUBLIC_KEY,
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
   sendGridKey: process.env.SEND_GRID_KEY,
-  redirectDomain: 'https://www.bedroombands.com/'
-}
+  redirectDomain: "https://www.bedroombands.com/"
+};
